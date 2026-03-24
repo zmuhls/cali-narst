@@ -327,8 +327,8 @@ CUNY AI Lab Sandbox (chat.ailab.gc.cuny.edu):
 
 **How might CALI's frameworks, tools, and methods translate to your context?**
 
-cuny.is/cali
-ailab.gc.cuny.edu
+- cuny.is/cali
+- ailab.gc.cuny.edu
 
 ---
 
