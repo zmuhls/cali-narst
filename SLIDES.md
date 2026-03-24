@@ -131,6 +131,10 @@ Three-phase arc
 
 **Label:** Curriculum
 
+- Teaching with, about, and against AI
+- Mapping, disciplinary working groups, affinity discussions
+- Exploration and Tinkering as shared methodology
+
 **Stage:** `slide13.jpg`
 
 ---
@@ -141,7 +145,9 @@ Three-phase arc
 
 - **Faculty Development Data & Program Evaluation** -- tracking engagement, module development, and outcomes across the cohort
 - **Critical AI Literacy Modules & Teaching Implementation** -- documenting how faculty translate CALI frameworks into course practice
-- **Undergraduate Student Surveys & Interviews** -- "Describe a recent situation where you had to decide whether or not to use AI."
+- **Undergraduate Student Surveys & Interviews**
+  - "Describe a recent situation where you had to decide whether or not to use AI."
+  - "How do AI tools affect your learning process when you use them for school?"
 
 **Stage:** `slide14.jpg`
 
@@ -161,6 +167,10 @@ Over 400 responses, 2 interviews
 **Label:** Research
 Three early Cohort 1 pilots
 
+- **LIB 10000:** Readings across scale, examining outputs, models
+- **ENG 100:** Reflective writing on creative labor and AI use
+- **SOC 101:** Applying Core Sociological Concepts to AI
+
 **Stage:** `slide16.png`
 
 ---
@@ -168,7 +178,19 @@ Three early Cohort 1 pilots
 ## Slide 17 -- Teaching Critical AI Literacy
 
 **Label:** Research
-As collective world-building
+
+Teaching Critical AI Literacy...
+- Frame AI as sociotechnical system; cultural, labor-driven, non-neutral tech
+- Allow for refusal and/or adoption of GenAI tools
+- Pedagogy leverages community and collaboration to engage in critical inquiry
+- Explore how knowledge is produced, for whom, and with what consequences
+
+...As collective world-building:
+- Resist inevitability narratives
+- Think across scale and contexts
+- Interrogate systems of power, knowledge
+- Center social, environmental, and epistemological justice issues
+- Classroom as a "radical space of possibility" to foster agency, collective approaches
 
 **Stage:** `slide17.jpg`
 
