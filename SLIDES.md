@@ -327,9 +327,9 @@ CUNY AI Lab Sandbox (chat.ailab.gc.cuny.edu):
 
 **How might CALI's frameworks, tools, and methods translate to your context?**
 
-- cuny.is/cali
-- ailab.gc.cuny.edu
-
+- **Critical AI Literacy Institute** -- cuny.is/cali
+- **CUNY AI Lab** -- ailab.gc.cuny.edu
+  
 ---
 
 _Draft: 2026-03-24. Brooklyn College visit, March 25, 2026. 25 slides._
