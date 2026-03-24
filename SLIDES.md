@@ -31,10 +31,10 @@ Luke Waltzer / Laurie Hurson / Zach Muhlbauer
 
 **CALI operates across four interconnected areas:**
 
-- **Faculty Development** -- **Supporting faculty in critical, pedagogically grounded engagements with AI**
-- **Research** -- **Studying how faculty and students navigate AI in the classroom**
-- **Research and Development** -- **Building and testing tools alongside faculty practice**
-- **Advocacy** -- **Advancing policy and institutional strategy across CUNY**
+- **Faculty Development** -- **Supporting faculty in teaching with, about, and against genAI**
+- **Research** -- **Studying how faculty and students navigate genAI in their classroom and labor**
+- **Research and Development** -- **Building and testing LLM-based tools in collaboration with faculty**
+- **Advocacy** -- **Centering teacher and student agency in policy and strategy discussions**
 
 **Stage:** **image placeholder (image2.png)**
 
@@ -85,7 +85,7 @@ Luke Waltzer / Laurie Hurson / Zach Muhlbauer
 
 Launching March 27, 2026 -- Three Tracks:
 
-- **Critical Foundations** -- **Grounding AI engagement in disciplinary critique**
+- **Critical Foundations** -- **Introduction to genAI starting for core disciplinary concerns**
 - **Ecological Implications** -- **Examining environmental and labor costs of AI**
 - **T(h)inkering** -- **Hands-on experimentation with AI tools in course contexts**
 
@@ -134,19 +134,7 @@ Launching March 27, 2026 -- Three Tracks:
 
 ---
 
-## Slide 11 -- Policy and Strategy Outcomes (`layout-split`)
-
-**CALI's work informs institutional and sector-level change across three domains:**
-
-- **Policy Advocacy** -- **Shaping CUNY-wide and national conversations about AI in higher education**
-- **Instructional Labor** -- **Centering faculty expertise and protecting teaching conditions**
-- **Institutional Strategy** -- **Supporting campuses in developing coherent, values-driven AI frameworks**
-
-**Stage:** **image placeholder (image10.png)**
-
----
-
-## Slide 12 -- Faculty Development Curriculum (`layout-split`)
+## Slide 11 -- Faculty Development Curriculum (`layout-split`)
 
 **The CALI faculty development program runs across three phases:**
 
@@ -163,7 +151,7 @@ Teaching courses and modules -- research and documentation
 
 ---
 
-## Slide 13 -- Developing a Community of Practice (`layout-split`)
+## Slide 12 -- Developing a Community of Practice (`layout-split`)
 
 - Teaching with, about, and against AI
 - Mapping, disciplinary working groups, affinity discussions
@@ -173,7 +161,7 @@ Teaching courses and modules -- research and documentation
 
 ---
 
-## Slide 14 -- Research and Mixed Methods Approach (`layout-split`)
+## Slide 13 -- Research and Mixed Methods Approach (`layout-split`)
 
 **Three interlocking data streams:**
 
@@ -185,7 +173,7 @@ Teaching courses and modules -- research and documentation
 
 ---
 
-## Slide 15 -- Preliminary Observations: Student Surveys (`layout-split`)
+## Slide 14 -- Preliminary Observations: Student Surveys (`layout-split`)
 
 **Early findings from** over 400 survey responses **and** 2 interviews**:**
 
@@ -197,7 +185,7 @@ Teaching courses and modules -- research and documentation
 
 ---
 
-## Slide 16 -- Preliminary Observations: Faculty Interventions (`layout-split`)
+## Slide 15 -- Preliminary Observations: Faculty Interventions (`layout-split`)
 
 **Three early examples from Cohort 1 pilots:**
 
@@ -209,7 +197,7 @@ Teaching courses and modules -- research and documentation
 
 ---
 
-## Slide 17 -- Teaching Critical AI Literacy (`layout-split`)
+## Slide 16 -- Teaching Critical AI Literacy (`layout-split`)
 
 Teaching Critical AI Literacy...
 - Frame AI as sociotechnical system; cultural, labor-driven, non-neutral tech
@@ -228,7 +216,7 @@ Teaching Critical AI Literacy...
 
 ---
 
-## Slide 18 -- Technical Infrastructure and Instructional Design (`layout-split`)
+## Slide 17 -- Technical Infrastructure and Instructional Design (`layout-split`)
 
 Developing technical infrastructure while providing instructional design support:
 
@@ -245,7 +233,7 @@ Running pilots across three CUNY campuses:
 
 ---
 
-## Slide 19 -- CALI Year 1: In Search of Shared Access (`layout-split`)
+## Slide 18 -- CALI Year 1: In Search of Shared Access (`layout-split`)
 
 **June 2025 -- Two-Day** **Critical AI Literacy Institute:** Hugging Face Chat **(since sunsetted)**
 - Part of Hugging Face ecosystem (e.g. datasets, models, demos)
@@ -262,7 +250,7 @@ Running pilots across three CUNY campuses:
 
 ---
 
-## Slide 20 -- Piloting CALI Tools on Hugging Face (`layout-split`)
+## Slide 19 -- Piloting CALI Tools on Hugging Face (`layout-split`)
 
 - Piloted in heritage-speaking Spanish section at Hunter College **in Fall 2025**
 - Built-in changelog records edits to system prompt**;** retraceable data points **for best practices**
@@ -271,7 +259,7 @@ Running pilots across three CUNY campuses:
 
 ---
 
-## Slide 21 -- Then and Now: CALI Cohort 1, 2025 (`layout-split`)
+## Slide 20 -- Then and Now: CALI Cohort 1, 2025 (`layout-split`)
 
 **Faculty pilots hosted as standalone Hugging Face Spaces:**
 
@@ -282,7 +270,7 @@ Running pilots across three CUNY campuses:
 
 ---
 
-## Slide 22 -- Then and Now: CALI Cohort 2, 2026 (`layout-split`)
+## Slide 21 -- Then and Now: CALI Cohort 2, 2026 (`layout-split`)
 
 **Adoption of** Open WebUI**:**
 - Free and open-source community chat platform
@@ -297,7 +285,7 @@ CUNY AI Lab Sandbox (chat.ailab.gc.cuny.edu):
 
 ---
 
-## Slide 23 -- CALI 2 Cohort: T(h)inkering to Come (`layout-split`)
+## Slide 22 -- CALI 2 Cohort: T(h)inkering to Come (`layout-split`)
 
 **Five projects in development for Cohort 2:**
 
@@ -311,7 +299,7 @@ CUNY AI Lab Sandbox (chat.ailab.gc.cuny.edu):
 
 ---
 
-## Slide 24 -- Lessons Learned by Doing (`layout-split`)
+## Slide 23 -- Lessons Learned by Doing (`layout-split`)
 
 - Experimentation as source of critical and methodological knowing
 - Treating process as a scaffolded progression and a means of quality assurance
@@ -322,10 +310,24 @@ CUNY AI Lab Sandbox (chat.ailab.gc.cuny.edu):
 
 ---
 
+## Slide 24 -- Policy and Strategy Outcomes (`layout-split`)
+
+**CALI's work seeks to inform decision making across three domains:**
+
+- **Curricula** -- **how do we help faculty attend to impacts of genAI on student capacity to grow in their disciplines?**
+- **Policy Advocacy** -- **how do we preserve and protect the agency of teachers and students?**
+- **Labor** -- **how do we attend to the labor impacts of genAI for teachers, students, and staff?**
+- **Strategy** -- **how do we help various constituencies to develop coherent, values-driven frameworks to reckon with genAI?**
+
+**Stage:** **image placeholder (image10.png)**
+
+---
+
 ## Slide 25 -- Discussion (`layout-full-dark closing-slide`)
 
 **How might CALI's frameworks, tools, and methods translate to your context?**
 
+cuny.is/cali
 ailab.gc.cuny.edu
 
 ---
