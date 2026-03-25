@@ -152,17 +152,18 @@ section.slide.active { display: flex; }
 /* ── TITLE SLIDE ── */
 [data-slide="title"] .content {
   justify-content: flex-start;
-  padding-top: clamp(24px,3.5vw,48px);
+  padding-top: clamp(16px,2.5vw,40px);
 }
 [data-slide="title"] {
   flex-direction: column; align-items: stretch;
 }
 [data-slide="title"] .content {
   flex: 0 0 auto; overflow: visible;
-  padding-bottom: clamp(20px,2.5vw,32px);
+  padding-bottom: clamp(12px,1.5vw,24px);
 }
+[data-slide="title"] .stage { flex: 1 1 auto; min-height: 80px; }
 .title-credit {
-  margin-top: auto;
+  margin-top: clamp(8px,1.5vw,20px);
   display: flex; align-items: center; gap: clamp(16px,2vw,24px);
 }
 .title-credit .credit-names {
@@ -170,16 +171,16 @@ section.slide.active { display: flex; }
   opacity: 0.7; line-height: 1.5; letter-spacing: 0.005em;
 }
 .title-divider {
-  margin-top: clamp(10px,1.5vw,18px);
+  margin-top: clamp(6px,1vw,14px);
   border-top: 1px solid rgba(180,200,220,0.07);
 }
 .title-agenda-label {
-  margin-top: clamp(8px,1vw,14px);
-  font-size: clamp(12px,1.1vw,14px); color: var(--part);
+  margin-top: clamp(4px,0.6vw,10px);
+  font-size: clamp(11px,1vw,13px); color: var(--part);
   letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;
 }
 .title-agenda {
-  list-style: none; padding: 0; margin-top: 0.5em;
+  list-style: none; padding: 0; margin-top: 0.3em;
   counter-reset: agenda;
   display: flex; flex-direction: column; gap: 2px;
 }
@@ -192,6 +193,13 @@ section.slide.active { display: flex; }
   counter-increment: agenda;
   display: inline-block; width: 1.6em;
   color: var(--part); font-weight: 700; opacity: 1;
+}
+
+/* ── STAGE CREDIT LABEL ── */
+.stage-credit {
+  position: absolute; bottom: 10px; right: 12px; z-index: 2;
+  font-size: 11px; color: var(--muted); opacity: 0.5;
+  letter-spacing: 0.04em; pointer-events: none;
 }
 
 /* ── STAGE FILL (iframes, canvas, video) ── */
