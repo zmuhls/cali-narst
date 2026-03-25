@@ -57,6 +57,11 @@ header .bar { pointer-events: auto; display: flex; align-items: center; gap: 8px
   max-width: 760px; margin: 0 auto; pointer-events: auto;
   display: flex; flex-direction: row; gap: 10px; align-items: center;
 }
+.footer-logo {
+  height: clamp(16px, 2.2vw, 26px); width: auto; flex-shrink: 0;
+  opacity: 0.45; pointer-events: none;
+  object-fit: contain;
+}
 .footer-arrow {
   display: inline-flex; width: 28px; height: 28px; flex-shrink: 0;
   border-radius: 6px; border: 1px solid rgba(180,200,220,0.10);
@@ -166,10 +171,20 @@ section.slide.active { display: flex; }
   font-size: clamp(13px,1.25vw,15px); color: var(--fg);
   opacity: 0.7; line-height: 1.5; letter-spacing: 0.005em;
 }
-.title-outline {
-  margin-top: 1em;
+.title-agenda {
+  list-style: none; padding: 0; margin-top: 1.2em;
+  counter-reset: agenda;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.title-agenda li {
   font-size: clamp(13px,1.2vw,15px); color: var(--fg); opacity: 0.55;
-  letter-spacing: 0.02em; line-height: 1.6;
+  letter-spacing: 0.02em; line-height: 1.7;
+}
+.title-agenda li::before {
+  content: counter(agenda) '.';
+  counter-increment: agenda;
+  display: inline-block; width: 1.6em;
+  color: var(--part); font-weight: 700; opacity: 1;
 }
 
 /* ── STAGE FILL (iframes, canvas, video) ── */

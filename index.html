@@ -31,7 +31,12 @@
       <div class="title-credit">
         <span class="credit-names">Luke Waltzer &middot; Laurie Hurson &middot; Zach Muhlbauer</span>
       </div>
-      <p class="title-outline">About CALI &nbsp;&middot;&nbsp; Curriculum and Research &nbsp;&middot;&nbsp; T(h)inkering &nbsp;&middot;&nbsp; Discussion</p>
+      <ol class="title-agenda">
+        <li>About CALI</li>
+        <li>Curriculum and Research</li>
+        <li>T(h)inkering</li>
+        <li>Discussion</li>
+      </ol>
     </div>
     <div class="stage" aria-hidden="true">
       <div class="stage-fill">
@@ -230,9 +235,9 @@
       <h1>Faculty Development</h1>
       <h2>Three-phase arc</h2>
       <div style="margin-top: 1em;">
-        <div class="card frag"><h4>Spring Meetings</h4><p>Reading, writing, and framing approaches &mdash; establishing community of practice &mdash; critical pedagogical foundations and technical interlude</p></div>
-        <div class="card frag"><h4>Summer Institute</h4><p>Intensive exploration and discussion &mdash; module development and collaboration</p></div>
-        <div class="card frag"><h4>Fall Implementation</h4><p>Teaching courses and modules &mdash; research and documentation</p></div>
+        <div class="card frag"><h4>Spring Meetings</h4><ul><li>Reading, writing, and framing approaches</li><li>Establishing community of practice</li><li><a href="https://criticalai.commons.gc.cuny.edu/2025/08/23/critical-pedagogical-foundations/" target="_blank" rel="noopener">Critical pedagogical foundations</a> and technical interlude</li></ul></div>
+        <div class="card frag"><h4>Summer Institute</h4><ul><li>Intensive exploration and discussion</li><li>Module development and collaboration</li></ul></div>
+        <div class="card frag"><h4>Fall Implementation</h4><ul><li>Teaching courses and modules</li><li>Research and documentation</li></ul></div>
       </div>
     </div>
     <div class="stage" aria-hidden="true">
@@ -369,7 +374,7 @@
     <div class="stage" aria-hidden="true">
       <div class="step-grid">
         <div class="step-row frag"><div class="step-num">1</div><div class="step-text">Identifying <strong>pedagogical challenges</strong> faculty face in their classes</div></div>
-        <div class="step-row frag"><div class="step-num">2</div><div class="step-text">Mapping disciplinary methods onto <strong>control over AI tools</strong></div></div>
+        <div class="step-row frag"><div class="step-num">2</div><div class="step-text">Translating disciplinary methods into <strong>hands-on control over AI tools</strong></div></div>
         <div class="step-row frag"><div class="step-num">3</div><div class="step-text">Prototyping <strong>discipline-specific AI tools</strong> in situ</div></div>
         <div class="step-row frag"><div class="step-num">4</div><div class="step-text">Pilots: <strong>Spanish</strong> (Hunter, Baruch) · <strong>English, History, FYW</strong> (CCNY)</div></div>
       </div>
@@ -380,14 +385,29 @@
   <section class="slide" data-slide="year1" aria-label="CALI Year 1: In Search of Shared Access">
     <div class="content">
       <div class="label">T(h)inkering</div>
-      <h1>Year 1</h1>
+      <h1>Year 1 Infrastructure</h1>
       <h2>In Search of Shared Access</h2>
+      <ul style="margin-top: 1em;">
+        <li class="frag"><strong>June 2025</strong> &mdash; Hugging Face Chat (since sunsetted)</li>
+        <li class="frag"><strong>Summer 2025</strong> &mdash; Hugging Face Spaces for hosting AI demos</li>
+        <li class="frag" data-start-gallery><strong>ChatUI-Helper</strong> &mdash; turning faculty configs into hosted demos<br><a href="https://huggingface.co/spaces/milwright/chatui-helper" target="_blank" rel="noopener" style="font-size: 0.85em;">huggingface.co/spaces/milwright/chatui-helper</a></li>
+      </ul>
     </div>
     <div class="stage" aria-hidden="true">
-      <div class="step-grid">
-        <div class="step-row frag"><div class="step-num">1</div><div class="step-text"><strong>June 2025</strong> &mdash; Hugging Face Chat (since sunsetted)</div></div>
-        <div class="step-row frag"><div class="step-num">2</div><div class="step-text"><strong>Summer 2025</strong> &mdash; Hugging Face Spaces for hosting AI demos</div></div>
-        <div class="step-row frag"><div class="step-num">3</div><div class="step-text"><strong>ChatUI-Helper</strong> &mdash; turning faculty configs into hosted demos</div></div>
+      <div class="stage-gallery" data-interval="6000" data-frag-sync>
+        <div class="gallery-item active">
+          <img src="images/slide20a.jpg" alt="ChatUI Helper on Hugging Face: Quick Start Templates and Space Identity configuration">
+          <div class="gallery-caption">ChatUI Helper &mdash; template and identity config</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/slide20b.jpg" alt="ChatUI Helper System Configuration: system prompt, model selector, language, temperature, and max tokens">
+          <div class="gallery-caption">System prompt, model, and parameter settings</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/slide20c.jpg" alt="ChatUI Helper Example Prompts, URL Grounding, Environment Variables, and Upload Configuration sections">
+          <div class="gallery-caption">Example prompts, URL grounding, and deployment options</div>
+        </div>
+        <div class="gallery-dots"></div>
       </div>
     </div>
   </section>
@@ -399,12 +419,13 @@
       <h1>Piloting on Hugging Face</h1>
       <h2>Heritage Spanish at Hunter College, Fall 2025</h2>
       <ul style="margin-top: 1em;">
+        <li class="frag" data-gallery-idx="0">AmigAI &mdash; conversational Spanish practice</li>
         <li class="frag">Heritage-speaking Spanish section, Hunter College</li>
-        <li class="frag">Built-in changelog for retraceable system prompt edits</li>
+        <li class="frag" data-gallery-idx="1">Built-in changelog for retraceable system prompt edits</li>
       </ul>
     </div>
     <div class="stage" aria-hidden="true">
-      <div class="stage-gallery" data-interval="6000">
+      <div class="stage-gallery" data-interval="6000" data-frag-sync>
         <div class="gallery-item active">
           <img src="images/slide20-a.png" alt="AmigAI Demo v1.2a on Hugging Face Spaces showing a Spanish conversation with a pirate character named Perla">
           <div class="gallery-caption">AmigAI Demo on Hugging Face Spaces</div>
@@ -422,7 +443,7 @@
   <section class="slide" data-slide="then-cohort1" aria-label="Then and Now: CALI Cohort 1, 2025">
     <div class="content">
       <div class="label">T(h)inkering</div>
-      <h1>Then and Now</h1>
+      <h1><strong>Then</strong> and Now</h1>
       <h2>CALI Cohort 1, 2025</h2>
       <ul style="margin-top: 1em;">
         <li class="frag">Faculty pilots as standalone Hugging Face Spaces</li>
@@ -440,12 +461,10 @@
   <section class="slide" data-slide="then-cohort2" aria-label="Then and Now: CALI Cohort 2, 2026">
     <div class="content">
       <div class="label">T(h)inkering</div>
-      <h1>Then and Now</h1>
+      <h1>Then and <strong>Now</strong></h1>
       <h2>CALI Cohort 2, 2026 &mdash; Open WebUI</h2>
       <ul style="margin-top: 1em;">
-        <li class="frag">Open-source chat platform, self-hosted by <a href="https://ailab.gc.cuny.edu" target="_blank" rel="noopener">CUNY AI Lab</a></li>
-        <li class="frag">Dedicated sandbox for teaching and research</li>
-        <li class="frag">AmigAI &mdash; conversational Spanish practice</li>
+        <li class="frag">Open-source chat platform, self-hosted by <a href="https://ailab.gc.cuny.edu" target="_blank" rel="noopener">CUNY AI Lab</a> &mdash; dedicated sandbox for teaching and research</li>
       </ul>
     </div>
     <div class="stage" aria-hidden="true">
@@ -513,10 +532,10 @@
     </div>
     <div class="stage" aria-hidden="true">
       <div class="step-grid">
-        <div class="step-row frag"><div class="step-num">1</div><div class="step-text"><strong>Curricula</strong> &mdash; how do we help faculty attend to impacts of genAI on student capacity to grow in their disciplines?</div></div>
-        <div class="step-row frag"><div class="step-num">2</div><div class="step-text"><strong>Policy Advocacy</strong> &mdash; how do we preserve and protect the agency of teachers and students?</div></div>
+        <div class="step-row frag"><div class="step-num">1</div><div class="step-text"><strong>Policy Advocacy</strong> &mdash; how do we preserve and protect the agency of teachers and students?</div></div>
+        <div class="step-row frag"><div class="step-num">2</div><div class="step-text"><strong>Instructional</strong> &mdash; how do we help faculty attend to impacts of genAI on student capacity to grow in their disciplines?</div></div>
         <div class="step-row frag"><div class="step-num">3</div><div class="step-text"><strong>Labor</strong> &mdash; how do we attend to the labor impacts of genAI for teachers, students, and staff?</div></div>
-        <div class="step-row frag"><div class="step-num">4</div><div class="step-text"><strong>Strategy</strong> &mdash; how do we help constituencies develop coherent, values-driven frameworks to reckon with genAI?</div></div>
+        <div class="step-row frag"><div class="step-num">4</div><div class="step-text"><strong>Institutional Strategy</strong> &mdash; how do we help constituencies develop coherent, values-driven frameworks to reckon with genAI?</div></div>
       </div>
     </div>
   </section>
@@ -544,6 +563,7 @@
 <!-- STICKY FOOTER SLIDER -->
 <div class="sticky-footer">
   <div class="footer-slider">
+    <img src="images/TLC-Logo-v4-No-GC-white.png" alt="Teaching and Learning Center" class="footer-logo">
     <button class="footer-arrow" id="btn-prev" aria-label="Previous slide">&#8592;</button>
     <div class="slider-track">
       <input type="range" id="slide-scrubber" min="1" max="27" value="1" aria-label="Navigate to slide">

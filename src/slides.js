@@ -44,7 +44,9 @@ function advance() {
   var frags = fragsOf(slides[idx]);
   var hidden = frags.filter(function(f) { return !f.classList.contains('visible'); });
   if (hidden.length) {
-    hidden[0].classList.add('visible');
+    var frag = hidden[0];
+    frag.classList.add('visible');
+    syncGalleryForward(frag, slides[idx]);
   } else if (idx < slides.length - 1) {
     show(idx + 1);
   }
@@ -54,9 +56,46 @@ function retreat() {
   var frags = fragsOf(slides[idx]);
   var shown = frags.filter(function(f) { return f.classList.contains('visible'); });
   if (shown.length) {
-    shown[shown.length - 1].classList.remove('visible');
+    var frag = shown[shown.length - 1];
+    frag.classList.remove('visible');
+    syncGalleryBackward(frag, slides[idx]);
   } else if (idx > 0) {
     show(idx - 1, true);
+  }
+}
+
+/* ── Gallery ↔ fragment sync ── */
+function syncGalleryForward(frag, slide) {
+  var gallery = slide.querySelector('.stage-gallery');
+  if (!gallery) return;
+  if (frag.dataset.startGallery !== undefined && !gallery._timer) {
+    var items = gallery.querySelectorAll('.gallery-item');
+    var interval = parseInt(gallery.dataset.interval || '6000', 10);
+    gallery._timer = setInterval(function() {
+      var cur = gallery.querySelector('.gallery-item.active');
+      var curIdx = Array.from(items).indexOf(cur);
+      showGalleryItem(gallery, (curIdx + 1) % items.length);
+    }, interval);
+  }
+  if (frag.dataset.galleryIdx !== undefined) {
+    showGalleryItem(gallery, parseInt(frag.dataset.galleryIdx, 10));
+  }
+}
+
+function syncGalleryBackward(frag, slide) {
+  var gallery = slide.querySelector('.stage-gallery');
+  if (!gallery) return;
+  if (frag.dataset.startGallery !== undefined && gallery._timer) {
+    clearInterval(gallery._timer);
+    gallery._timer = null;
+    showGalleryItem(gallery, 0);
+  }
+  if (frag.dataset.galleryIdx !== undefined) {
+    var visible = fragsOf(slide).filter(function(f) {
+      return f.classList.contains('visible') && f.dataset.galleryIdx !== undefined;
+    });
+    showGalleryItem(gallery, visible.length
+      ? parseInt(visible[visible.length - 1].dataset.galleryIdx, 10) : 0);
   }
 }
 
@@ -84,6 +123,7 @@ function initGalleries(slide) {
       dot.addEventListener('click', function() { showGalleryItem(gallery, i); });
       dots.appendChild(dot);
     });
+    if (gallery.dataset.fragSync) return;
     var interval = parseInt(gallery.dataset.interval || '6000', 10);
     gallery._timer = setInterval(function() {
       var cur = gallery.querySelector('.gallery-item.active');
