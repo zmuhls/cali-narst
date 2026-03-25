@@ -414,13 +414,16 @@ body.overview section.slide::after {
   font-size: 11px; font-weight: 700; color: var(--muted); opacity: 0.5;
   font-variant-numeric: tabular-nums; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
-body.overview .content { flex: 0 0 auto; padding: 0; border: none; background: transparent; backdrop-filter: none; min-height: 0; overflow: hidden; }
+body.overview .content { flex: 0 0 auto; padding: 4px 0 0; border: none; background: transparent; backdrop-filter: none; min-height: 0; overflow: visible; }
 body.overview .content h1 { font-size: 14px; line-height: 1.25; margin-bottom: 0; }
 body.overview .content .label,
 body.overview .slide-break .content .break-tag { font-size: 9px; margin-bottom: 4px; letter-spacing: 0.1em; }
 body.overview .content h2,
 body.overview .content .date,
-body.overview .title-credit { display: none; }
+body.overview .title-credit,
+body.overview .title-agenda { display: none; }
+body.overview .content ul,
+body.overview .content .card { display: none; }
 body.overview .stage { display: none; }
 body.overview .slide-break { padding: 14px; }
 body.overview .slide-break .content { justify-content: center; }
