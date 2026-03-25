@@ -17,6 +17,10 @@ function fragsOf(slide) {
 
 function show(i, revealAll) {
   var next = clamp(i, 0, slides.length - 1);
+  // Kill any running gallery timers on the slide we're leaving
+  slides[idx].querySelectorAll('.stage-gallery').forEach(function(g) {
+    if (g._timer) { clearInterval(g._timer); g._timer = null; }
+  });
   slides[idx].classList.remove('active');
   idx = next;
   slides[idx].classList.add('active');
