@@ -1,68 +1,55 @@
-# Critical AI Literacy Institute, Brooklyn College
+# cali-narst
 
-27-slide presentation for the CALI faculty visit to Brooklyn College on March 25, 2026. Single-page HTML deck, no build system, no dependencies.
+NARST 2026 presentation deck for the Critical AI Literacy Institute related paper set.
 
-**Live** [cuny.is/cali-brooklyn](https://cuny.is/cali-brooklyn)
+## Session
 
-**Presented by** Luke Waltzer, Laurie Hurson, Zach Muhlbauer
-Teaching and Learning Center, CUNY Graduate Center
+**Community, Transparency, and Tinkering for Just Futures: Lessons Learned from the Critical AI Literacy Institute**
 
----
+- Tuesday, April 21, 2026
+- 16:15 - 17:45
+- Jefferson B (L4)
+- Track Strand 12: Technology for Teaching, Learning, and Research
+- Presentation type: Related Paper Set
 
-## Slide Overview
+## Presenters
 
-| # | Title | Section | Stage |
-|---|-------|---------|-------|
-| 1 | Title | | Boids iframe |
-| 2 | Origins of CALI | About CALI | Step-grid (4) |
-| 3 | CALI as an Intervention | About CALI | Step-grid (4) |
-| 4 | Campuses | Cohort 1, 2025 | Table |
-| 5 | Disciplines | Cohort 1, 2025 | Table |
-| 6 | Faculty Rank | Cohort 1, 2025 | Bar chart |
-| 7 | Second CALI Cohort | Cohort 2, 2026 | Step-grid (3) |
-| 8 | Campuses | Cohort 2, 2026 | Table |
-| 9 | Disciplines | Cohort 2, 2026 | Table |
-| 10 | Faculty Rank | Cohort 2, 2026 | Bar chart |
-| 11 | BREAK | Laurie Hurson | |
-| 12 | Faculty Development | Curriculum | Image |
-| 13 | Community of Practice | Curriculum | Image |
-| 14 | Mixed Methods | Research | Image |
-| 15 | Student Surveys | Research | Gallery (2) |
-| 16 | Faculty Interventions | Research | Image |
-| 17 | Teaching Critical AI Literacy | Research | Image |
-| 18 | BREAK | Zach Muhlbauer | |
-| 19 | Technical Lead | T(h)inkering | Step-grid (4) |
-| 20 | Year 1 Infrastructure | T(h)inkering | Gallery (2) |
-| 21 | Piloting on Hugging Face | T(h)inkering | Gallery (2) |
-| 22 | Then and Now | T(h)inkering | Image |
-| 23 | Then and Now | T(h)inkering | Gallery (3) |
-| 24 | T(h)inkering to Come | T(h)inkering | Image |
-| 25 | Lessons Learned | T(h)inkering | Step-grid (4) |
-| 26 | Policy and Strategy | Looking Ahead | Step-grid (4) |
-| 27 | Questions | Discussion | Links |
+- Luke Waltzer
+- Laurie Hurson
+- Zach Muhlbauer
+- Sule Aksoy
 
----
+## Current deck status
 
-## Structure and Design
+The deck has been remapped into a scaffolded live-presentation structure with:
 
-Custom engine (`src/slides.js`) with no framework dependencies. Each slide is a `<section class="slide">` with a `.content` panel (text) and `.stage` panel (visuals). Side by side on desktop (720px+), stacked on mobile.
+- 1 title slide
+- 4 section dividers
+- 10 content slides per presenter
+- 1 references slide per presenter
+- 49 slides total
 
-Arrow keys, spacebar, or swipe to navigate. Esc toggles overview grid. Sticky footer scrubber for direct slide access.
+Current content policy:
 
-Elements with `class="frag"` reveal one at a time on advance. Gallery sync attributes (`data-gallery-idx`, `data-frag-sync`) tie bullet reveals to carousel images.
+- real title, presenter names, section titles, and event metadata are in place
+- most body content is still placeholder text
+- Frappe charts are wired in for future figures
+- p5.js is wired in for generative visual space
 
-Dark theme with soft grey-blue palette. CSS custom properties in `src/styles.css`. System sans-serif typography. TLC logo in footer. `prefers-reduced-motion` disables all animations.
+## Files
 
-**Template** [zmuhls/slide-templates](https://github.com/zmuhls/slide-templates)
+- `index.html` — canonical slide deck
+- `src/styles.css` — deck styling
+- `src/slides.js` — slide engine and navigation
+- `OUTLINE.md` — full slide map
+- `CLAUDE.md` — repo working notes for future edits
 
----
-
-## Quick Start
+## Local preview
 
 ```bash
-git clone https://github.com/CUNY-AI-Lab/cali-brooklyn.git
-cd cali-brooklyn
 open index.html
 ```
 
-Push to `main` to deploy via GitHub Pages. No build step.
+## GitHub Pages
+
+This repository is intended to deploy from GitHub Pages using the `main` branch.
