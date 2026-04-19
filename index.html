@@ -1078,6 +1078,7 @@
     if (!el || el.dataset.init || !window.L) return;
     el.dataset.init = '1';
     var map = L.map(el, { zoomControl: !!opts.zoomControl, attributionControl: false, scrollWheelZoom: false });
+    (window.__deckLeafletMaps || (window.__deckLeafletMaps = [])).push(map);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, opacity: opts.dim ? 0.45 : 0.82 }).addTo(map);
     map.fitBounds([[40.53, -74.28], [40.93, -73.68]], { padding: [18, 18] });
     campuses.forEach(function(c) {
@@ -1089,6 +1090,7 @@
       L.rectangle([[40.53, -74.28], [40.93, -73.68]], { color: 'rgba(199,215,234,0.18)', weight: 1, fill: false, interactive: false }).addTo(map);
       map.dragging.disable(); map.doubleClickZoom.disable(); map.boxZoom.disable(); map.keyboard.disable(); if (map.tap) map.tap.disable();
     }
+    setTimeout(function() { map.invalidateSize(false); }, 120);
   }
   window.addEventListener('load', function () {
     createMap('title-map', { zoomControl: false, dim: true });

@@ -10,6 +10,7 @@ const lightbox = document.getElementById('image-lightbox');
 const lightboxImage = document.getElementById('lightbox-image');
 const lightboxCaption = document.getElementById('lightbox-caption');
 const lightboxClose = document.getElementById('lightbox-close');
+const leafletMaps = window.__deckLeafletMaps || (window.__deckLeafletMaps = []);
 
 function clamp(n, lo, hi) {
   return Math.max(lo, Math.min(hi, n));
@@ -47,6 +48,12 @@ function show(i, revealAll) {
   }
 
   initGalleries(slides[idx]);
+
+  setTimeout(function() {
+    leafletMaps.forEach(function(map) {
+      try { map.invalidateSize(false); } catch (e) {}
+    });
+  }, 60);
 }
 
 function advance() {
