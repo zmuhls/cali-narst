@@ -98,7 +98,14 @@ section.slide.active { display: flex; }
 .title-card h2 { font-size: clamp(28px, 3.1vw, 40px); color: rgba(236,242,248,0.94); font-weight: 500; line-height: 1.2; margin-bottom: 20px; }
 .panelists, .institution { font-size: clamp(20px, 2vw, 26px); color: rgba(236,242,248,0.9); }
 .panelists { margin-bottom: 10px; }
-.title-art-shell iframe { width: 100%; height: 100%; border: none; display: block; filter: saturate(0.92) brightness(0.7) contrast(1.06); }
+.title-domainwarp {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.title-art-shell iframe {
+  width: 100%; height: 100%; border: none; display: block; filter: saturate(0.92) brightness(0.7) contrast(1.06);
+}
 
 .slide-break.active { align-items: flex-start; justify-content: flex-end; overflow: hidden; padding-bottom: clamp(32px,5vw,60px); padding-left: clamp(20px,5vw,80px); background: linear-gradient(140deg, #131a24 0%, var(--bg) 65%); }
 .slide-break .content { background: transparent; border: none; justify-content: flex-end; min-height: unset; }
