@@ -19,11 +19,11 @@ Current repository target:
 
 ## Current structure requirement
 
-The deck should follow this exact structure:
+The deck should follow this structure:
 
 - 1 title slide
 - 4 section-divider slides, one for each presenter
-- 10 content slides for each presenter
+- content slides per presenter (currently: Luke 8, Laurie 13, Zach 8, Sule 11; Zach cut ZM5 and ZM8 on 2026-04-20)
 - 1 references slide for each presenter
 
 That yields 49 total slides.
