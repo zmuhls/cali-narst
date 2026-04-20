@@ -101,16 +101,16 @@ section.slide.active { display: flex; }
 .figure-stage > img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
 
 .content h1 { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 48; font-size: clamp(34px, 3.6vw, 58px); letter-spacing: -0.015em; line-height: 1.08; margin-bottom: 10px; text-align: left; text-wrap: balance; }
-.content h2 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(19px, 1.8vw, 28px); color: var(--muted); line-height: 1.24; margin-bottom: 14px; text-align: left; text-wrap: balance; letter-spacing: 0; }
-.content .label { font-family: var(--font-mono); font-size: clamp(12px, 0.95vw, 15px); letter-spacing: 0.2em; text-transform: uppercase; color: var(--part); font-weight: 500; margin-bottom: 14px; text-align: left; display: inline-flex; align-items: center; gap: 10px; }
+.content h2 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(22px, 2.0vw, 32px); color: var(--muted); line-height: 1.24; margin-bottom: 14px; text-align: left; text-wrap: balance; letter-spacing: 0; }
+.content .label { font-family: var(--font-mono); font-size: clamp(13px, 1.05vw, 17px); letter-spacing: 0.2em; text-transform: uppercase; color: var(--part); font-weight: 500; margin-bottom: 14px; text-align: left; display: inline-flex; align-items: center; gap: 10px; }
 .content .label::before { content: ''; display: inline-block; width: 22px; height: 1px; background: currentColor; opacity: 0.55; }
 .content ul { padding-left: 1.2em; }
-.content li { font-size: clamp(16px, 1.2vw, 21px); color: rgba(218,225,232,0.82); line-height: 1.38; margin-bottom: 7px; }
+.content li { font-size: clamp(20px, 1.5vw, 26px); color: rgba(218,225,232,0.82); line-height: 1.42; margin-bottom: 10px; }
 
 /* Dense slides (5+ bullets OR wrappy bullet text) — shrink further so overflow can't occur */
 .placeholder-slide.dense .content h1 { font-size: clamp(28px, 3.0vw, 48px); margin-bottom: 6px; }
-.placeholder-slide.dense .content h2 { font-size: clamp(16px, 1.5vw, 22px); margin-bottom: 10px; }
-.placeholder-slide.dense .content li { font-size: clamp(14px, 1.05vw, 18px); line-height: 1.32; margin-bottom: 5px; }
+.placeholder-slide.dense .content h2 { font-size: clamp(18px, 1.7vw, 26px); margin-bottom: 10px; }
+.placeholder-slide.dense .content li { font-size: clamp(17px, 1.3vw, 22px); line-height: 1.36; margin-bottom: 7px; }
 .parallel-points li { margin-bottom: 7px; }
 .arrow-bullets { list-style: none; padding-left: 0; }
 .arrow-bullets li { position: relative; padding-left: 1.6em; list-style: none; }
@@ -122,12 +122,12 @@ section.slide.active { display: flex; }
 .placeholder-slide .content ul { overflow: hidden; }
 
 /* When a figure.stage is aria-hidden (no real visual), drop it and let .content fill the row. */
-section.slide > figure.stage[aria-hidden="true"]:empty { display: none; }
+section.slide > figure.stage[aria-hidden="true"] { display: none !important; }
 @media (min-width: 900px) {
-  section.slide:has(> figure.stage[aria-hidden="true"]:empty) .content { flex: 1 1 100%; max-width: 100%; }
-  section.slide.placeholder-slide:has(> figure.stage[aria-hidden="true"]:empty) .content h1 { max-width: 28ch; }
-  section.slide.placeholder-slide:has(> figure.stage[aria-hidden="true"]:empty) .content h2,
-  section.slide.placeholder-slide:has(> figure.stage[aria-hidden="true"]:empty) .content ul { max-width: 52ch; }
+  section.slide:has(> figure.stage[aria-hidden="true"]) .content { flex: 1 1 100%; max-width: 100%; }
+  section.slide.placeholder-slide:has(> figure.stage[aria-hidden="true"]) .content h1 { max-width: 28ch; }
+  section.slide.placeholder-slide:has(> figure.stage[aria-hidden="true"]) .content h2,
+  section.slide.placeholder-slide:has(> figure.stage[aria-hidden="true"]) .content ul { max-width: 52ch; }
 }
 
 .frag { opacity: 0; transform: translateY(5px); transition: opacity 0.35s ease, transform 0.35s ease; pointer-events: none; }
