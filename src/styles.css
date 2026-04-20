@@ -15,8 +15,8 @@
   --header-h: 48px;
   --footer-h: 84px;
   --stage-min: 260px;
-  --body-copy: clamp(22px, 2vw, 34px);
-  --caption-copy: clamp(15px, 1.25vw, 22px);
+  --body-copy: clamp(24px, 2.2vw, 34px);
+  --caption-copy: clamp(16px, 1.4vw, 24px);
   --font-display: 'Newsreader', 'Iowan Old Style', 'Charter', Georgia, 'Times New Roman', serif;
   --font-body: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -100,12 +100,12 @@ section.slide.active { display: flex; }
 .figure-stage > :not(.media-caption) { flex: 1 1 auto; min-height: 0; }
 .figure-stage > img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
 
-.content h1 { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 48; font-size: clamp(34px, 3.6vw, 58px); letter-spacing: -0.015em; line-height: 1.08; margin-bottom: 10px; text-align: left; text-wrap: balance; }
-.content h2 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(22px, 2.0vw, 32px); color: var(--muted); line-height: 1.24; margin-bottom: 14px; text-align: left; text-wrap: balance; letter-spacing: 0; }
-.content .label { font-family: var(--font-mono); font-size: clamp(13px, 1.05vw, 17px); letter-spacing: 0.2em; text-transform: uppercase; color: var(--part); font-weight: 500; margin-bottom: 14px; text-align: left; display: inline-flex; align-items: center; gap: 10px; }
+.content h1 { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 48; font-size: clamp(36px, 5.0vw, 68px); letter-spacing: -0.015em; line-height: 1.08; margin-bottom: 10px; text-align: left; text-wrap: balance; }
+.content h2 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(24px, 2.9vw, 44px); color: var(--muted); line-height: 1.24; margin-bottom: 14px; text-align: left; text-wrap: balance; letter-spacing: 0; }
+.content .label { font-family: var(--font-mono); font-size: clamp(14px, 1.1vw, 18px); letter-spacing: 0.2em; text-transform: uppercase; color: var(--part); font-weight: 500; margin-bottom: 14px; text-align: left; display: inline-flex; align-items: center; gap: 10px; }
 .content .label::before { content: ''; display: inline-block; width: 22px; height: 1px; background: currentColor; opacity: 0.55; }
 .content ul { padding-left: 1.2em; }
-.content li { font-size: clamp(20px, 1.5vw, 26px); color: rgba(218,225,232,0.82); line-height: 1.42; margin-bottom: 10px; }
+.content li { font-size: clamp(22px, 2.1vw, 32px); color: rgba(218,225,232,0.82); line-height: 1.42; margin-bottom: 10px; }
 
 /* Dense slides (5+ bullets OR wrappy bullet text) — shrink further so overflow can't occur */
 .placeholder-slide.dense .content h1 { font-size: clamp(28px, 3.0vw, 48px); margin-bottom: 6px; }
