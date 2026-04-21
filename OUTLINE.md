@@ -63,11 +63,11 @@ Every presenter also gets a paper-title section divider. References slides were 
 | 23 | ZM1 | Tinkering as Critical AI Literacy |
 | 24 | ZM2 | Designing for Tinkerability |
 | 25 | ZM3 | Tinkering as Bricolage |
-| 26 | ZM4 | Teaching Infrastructure through Breakdown |
-| 27 | ZM5 | Hyperparameters as Instructional Controls |
-| 28 | ZM6 | AmigAI: Breakdown and Reconfiguration |
-| 29 | ZM7 | AmigAI: Tinkering with System Prompts |
-| 30 | ZM8 | Infrastructure and Instructional Design |
+| 26 | ZM4 | Infrastructure and Instructional Design |
+| 27 | ZM5 | Teaching Infrastructure through Breakdown |
+| 28 | ZM6 | Hyperparameters as Instructional Controls |
+| 29 | ZM7 | AmigAI: Breakdown and Reconfiguration |
+| 30 | ZM8 | AmigAI: Tinkering with System Prompts |
 | 31 | ZM9 | The CUNY AI Lab Sandbox |
 | 32 | ZM10 | Cohort 2 in the Sandbox |
 
