@@ -2,26 +2,15 @@
 (function () {
   var slide = document.querySelector('section[data-slide="sule-10"]');
   if (!slide) return;
-  if (getComputedStyle(slide).position === 'static') slide.style.position = 'relative';
+  var figure = slide.querySelector('figure.stage');
+  if (!figure) return;
+  figure.removeAttribute('aria-hidden');
+  figure.style.position = figure.style.position || 'relative';
 
-  // Right-half mount: canvas occupies the right 45% of the slide as a
-  // parallel track to the blockquote column.
   var canvas = document.createElement('canvas');
   canvas.id = 'sa10-canvas';
-  canvas.style.cssText = [
-    'position:absolute',
-    'top:0',
-    'right:0',
-    'width:45%',
-    'height:100%',
-    'display:block',
-    'z-index:0',
-    'opacity:0.78',
-    'pointer-events:auto'
-  ].join(';') + ';';
-  slide.insertBefore(canvas, slide.firstChild);
-  var content = slide.querySelector('.content');
-  if (content) { content.style.position = 'relative'; content.style.zIndex = '1'; }
+  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair;';
+  figure.appendChild(canvas);
 
   var SR = '201,166,207'; // --accent-sule
   var FG = '218,225,232';

@@ -411,30 +411,68 @@
         <li class="frag">Surfaces how models perform when tailored to classroom practice</li>
       </ul>
     </div>
-    <figure class="stage figure-stage diagram-stage" aria-hidden="true"></figure>
+    <figure class="stage figure-stage"></figure>
   </section>
-  <section class="slide placeholder-slide even-layout dense" data-slide="zach-talk-2" aria-label="Zach Muhlbauer slide 2: Designing for Tinkerability">
+  <script src="src/zm1-viz.js"></script>
+  <section class="slide placeholder-slide crowded ladder-slide zm2-grid" data-slide="zach-talk-2" aria-label="Zach Muhlbauer slide 2: Tinkering in Pedagogy">
     <div class="content">
       <div class="label">Zach Muhlbauer &middot; ZM2</div>
-      <h1>Designing for Tinkerability</h1>
-      <ul class="parallel-points" style="margin-top: 1em;">
-        <li class="frag"><strong>Immediate feedback</strong> &mdash; users see the effects of their actions instantly</li>
-        <li class="frag"><strong>Fluid experimentation</strong> &mdash; rapid modification of prototypes</li>
-        <li class="frag"><strong>Open exploration</strong> &mdash; materials combine in many ways; diverse pathways</li>
-        <li class="frag">Tinkering as &ldquo;a playful, exploratory, iterative style of engaging with a project &hellip; in which the <em>bricoleur</em> improvises with available materials&rdquo;</li>
+      <h1>Tinkering in Pedagogy</h1>
+      <ul class="ladder-list">
+        <li class="frag">
+          <span class="ladder-num" aria-hidden="true">01</span>
+          <span class="ladder-text">Raising questions</span>
+          <span class="ladder-body">each iteration opens with a fresh probe</span>
+        </li>
+        <li class="frag">
+          <span class="ladder-num" aria-hidden="true">02</span>
+          <span class="ladder-text">Reflection</span>
+          <span class="ladder-body">reflection-in-action at small scale (Sch&ouml;n)</span>
+        </li>
+        <li class="frag">
+          <span class="ladder-num" aria-hidden="true">03</span>
+          <span class="ladder-text">Hands-on knowing</span>
+          <span class="ladder-body">tacit knowledge gained only by doing and failing</span>
+        </li>
+        <li class="frag">
+          <span class="ladder-num" aria-hidden="true">04</span>
+          <span class="ladder-text">Undirected exploration</span>
+          <span class="ladder-body">bottom-up play converges into focus (Resnick)</span>
+        </li>
+        <li class="frag">
+          <span class="ladder-num" aria-hidden="true">05</span>
+          <span class="ladder-text">Problem framing</span>
+          <span class="ladder-body">constructing the problem from puzzling materials</span>
+        </li>
+        <li class="frag">
+          <span class="ladder-num" aria-hidden="true">06</span>
+          <span class="ladder-text">Personal toolbox</span>
+          <span class="ladder-body">expanding building blocks through playful use</span>
+        </li>
+        <li class="frag">
+          <span class="ladder-num" aria-hidden="true">07</span>
+          <span class="ladder-text">New applications</span>
+          <span class="ladder-body">matching tech first to uses &ldquo;new for the student&rdquo;</span>
+        </li>
+        <li class="frag">
+          <span class="ladder-num" aria-hidden="true">08</span>
+          <span class="ladder-text">Design decisions</span>
+          <span class="ladder-body">small-scale choices train judgment under incomplete knowledge</span>
+        </li>
       </ul>
     </div>
     <figure class="stage figure-stage diagram-stage" aria-hidden="true"></figure>
   </section>
   <section class="slide placeholder-slide odd-layout" data-slide="zach-talk-3" aria-label="Zach Muhlbauer slide 3: Tinkering as Bricolage">
     <div class="content">
-      <div class="label">Zach Muhlbauer &middot; ZM3</div>
+      <div class="label">Zach Muhlbauer &middot; ZM3 &middot; Louridas, 1999</div>
       <h1>Tinkering as Bricolage</h1>
       <ul class="parallel-points" style="margin-top: 1em;">
-        <li class="frag">Exploratorium Tinkering Studio &mdash; learners adjust angles and materials through failure and success</li>
-        <li class="frag">Four dimensions: <strong>engagement &middot; intentionality &middot; innovation &middot; solidarity</strong></li>
-        <li class="frag">Louridas: the bricoleur &ldquo;makes do with what&rsquo;s at hand,&rdquo; improvising rather than inventing new tools</li>
-        <li class="frag">Faculty working with AI combine existing models, datasets, and prompts for local needs</li>
+        <li class="frag">The bricoleur makes do with what is already at hand</li>
+        <li class="frag">Design proceeds through recombination, not invention from scratch</li>
+        <li class="frag">Ends shift as available materials reveal new constraints and possibilities</li>
+        <li class="frag">Faculty work this way with models, prompts, datasets, and course materials</li>
+        <li class="frag">Tinkering turns those assembled parts into local, course-specific tools</li>
       </ul>
     </div>
     <figure class="stage figure-stage diagram-stage" aria-hidden="true"></figure>
@@ -473,9 +511,10 @@
       <div class="label">Zach Muhlbauer &middot; ZM6</div>
       <h1>Hyperparameters as Instructional Controls</h1>
       <ul class="parallel-points" style="margin-top: 1em;">
-        <li class="frag"><strong>Temperature</strong> &mdash; the model's creativity dial: low is steady and predictable, high is loose and surprising</li>
-        <li class="frag">Tuning the dial aligns output with a lesson's goal &mdash; or lets it drift</li>
-        <li class="frag">At <strong>temperature 2.0</strong>, coherence breaks: the model stutters, mixes languages, and surfaces scraps of its training data</li>
+        <li class="frag"><strong>Temperature</strong> &mdash; shapes the probability distribution of an output</li>
+        <li class="frag"><strong>Low:</strong> steady, predictable</li>
+        <li class="frag"><strong>High:</strong> loose, surprising</li>
+        <li class="frag">At <strong>2.0</strong>, coherence breaks</li>
       </ul>
     </div>
     <figure class="stage figure-stage" aria-hidden="true"></figure>
@@ -528,7 +567,7 @@
         <li class="frag">Open-weight language models from small to large in a single interface</li>
         <li class="frag">Only model providers with zero data retention and training turned off</li>
         <li class="frag" data-gallery-idx="1">Compare models side-by-side, write system prompts, adjust parameters, export transcripts</li>
-        <li class="frag">Model cards with preset system prompt tied to knowledge base, agentic skills, tool calling</li>
+        <li class="frag" data-gallery-idx="2">Model cards with preset system prompt tied to knowledge base, agentic skills, tool calling</li>
       </ul>
     </div>
     <figure class="stage figure-stage">
@@ -541,6 +580,10 @@
           <img src="images/oi-anatomy-2.png" alt="Side-by-side comparison in the Sandbox: AmigAI-Template (left) and Google Gemma 3 27B base (right) responding to the same Spanish greeting prompt">
           <figcaption>Side-by-side compare: <strong>AmigAI&#8209;Template</strong> vs <strong>Google Gemma 3 27B</strong> &mdash; same prompt, two responses</figcaption>
         </div>
+        <div class="gallery-item">
+          <img src="images/oi-anatomy-3.png" alt="Sandbox Models page listing nine preset model cards across disciplines: My Model Card, Shakespeare 226, Coding Scaffold, AmigAI-Template, Span Film, HIST 24000 Primary Source Coach, CAIL Sandbox Skill Builder, Toulmin Scaffold, Local Writing Scaffold">
+          <figcaption>Cohort model cards: <strong>AmigAI</strong>, <strong>Shakespeare&nbsp;226</strong>, <strong>Span&nbsp;Film</strong>, <strong>HIST&nbsp;24000</strong>, <strong>Toulmin</strong>, and more &mdash; each a scaffold tuned to a course or skill</figcaption>
+        </div>
         <div class="gallery-dots" aria-label="Sandbox carousel navigation"></div>
       </div>
     </figure>
@@ -549,15 +592,99 @@
     <div class="content">
       <div class="label">Zach Muhlbauer &middot; ZM10</div>
       <h1>Cohort 2 in the Sandbox</h1>
-      <ul class="parallel-points" style="margin-top: 1em;">
-        <li class="frag"><strong>Concept Mapping</strong> (Interdisciplinary)</li>
-        <li class="frag"><strong>Laboratory Workflows</strong> (Physics)</li>
-        <li class="frag"><strong>Deep Listening</strong> (Ethnomusicology)</li>
-        <li class="frag"><strong>Interdisciplinary Math Connections</strong> (Precalculus)</li>
-        <li class="frag"><strong>Research Writing Scaffold</strong> (Sociology)</li>
-      </ul>
+      <p class="zm10-subtitle">Five faculty &middot; five disciplines &middot; one scaffold apiece.</p>
+      <span class="zm10-numeral" aria-hidden="true">II</span>
     </div>
-    <figure class="stage figure-stage diagram-stage" aria-hidden="true"></figure>
+    <figure class="stage figure-stage zm10-stage">
+      <span class="zm10-cohort-plate" aria-hidden="true">Cohort &middot; II &middot; V Scaffolds</span>
+      <div class="zm10-specimens" role="list">
+        <article class="specimen frag" data-spec="1" role="listitem">
+          <span class="roman" aria-hidden="true">I</span>
+          <div class="glyph-wrap">
+            <svg class="glyph g-concept" viewBox="0 0 80 80" aria-hidden="true">
+              <path class="edge" d="M 16 20 Q 28 32 40 40"/>
+              <path class="edge" d="M 64 22 Q 52 30 40 40"/>
+              <path class="edge" d="M 18 62 Q 28 52 40 40"/>
+              <path class="edge" d="M 62 60 Q 52 50 40 40"/>
+              <path class="edge thin" d="M 16 20 Q 36 12 64 22"/>
+              <circle cx="16" cy="20" r="2.6"/>
+              <circle cx="64" cy="22" r="2.6"/>
+              <circle cx="18" cy="62" r="2.6"/>
+              <circle cx="62" cy="60" r="2.6"/>
+              <circle cx="40" cy="40" r="4.5" class="node-primary"/>
+            </svg>
+          </div>
+          <h3>Concept Mapping</h3>
+          <span class="discipline">Interdisciplinary</span>
+        </article>
+        <article class="specimen frag" data-spec="2" role="listitem">
+          <span class="roman" aria-hidden="true">II</span>
+          <div class="glyph-wrap">
+            <svg class="glyph g-physics" viewBox="0 0 80 80" aria-hidden="true">
+              <line class="pivot" x1="16" y1="14" x2="64" y2="14"/>
+              <line class="pivot-tick" x1="24" y1="10" x2="22" y2="18"/>
+              <line class="pivot-tick" x1="36" y1="10" x2="34" y2="18"/>
+              <line class="pivot-tick" x1="48" y1="10" x2="46" y2="18"/>
+              <line class="pivot-tick" x1="60" y1="10" x2="58" y2="18"/>
+              <line class="rod" x1="40" y1="14" x2="54" y2="58"/>
+              <path class="arc" d="M 26 58 Q 40 70 54 58"/>
+              <circle class="bob" cx="54" cy="58" r="5.5"/>
+            </svg>
+          </div>
+          <h3>Laboratory Workflows</h3>
+          <span class="discipline">Physics</span>
+        </article>
+        <article class="specimen frag" data-spec="3" role="listitem">
+          <span class="roman" aria-hidden="true">III</span>
+          <div class="glyph-wrap">
+            <svg class="glyph g-listen" viewBox="0 0 80 80" aria-hidden="true">
+              <circle class="ripple r4" cx="40" cy="40" r="34"/>
+              <circle class="ripple r3" cx="40" cy="40" r="26"/>
+              <circle class="ripple r2" cx="40" cy="40" r="18"/>
+              <circle class="ripple r1" cx="40" cy="40" r="10"/>
+              <circle class="source" cx="40" cy="40" r="3.4"/>
+              <line class="stylus" x1="40" y1="40" x2="66" y2="14"/>
+              <circle class="stylus-tip" cx="66" cy="14" r="1.8"/>
+            </svg>
+          </div>
+          <h3>Deep Listening</h3>
+          <span class="discipline">Ethnomusicology</span>
+        </article>
+        <article class="specimen frag" data-spec="4" role="listitem">
+          <span class="roman" aria-hidden="true">IV</span>
+          <div class="glyph-wrap">
+            <svg class="glyph g-math" viewBox="0 0 80 80" aria-hidden="true">
+              <line class="axis" x1="6" y1="40" x2="74" y2="40"/>
+              <line class="axis" x1="40" y1="8" x2="40" y2="72"/>
+              <path class="curve sin" d="M 6 40 Q 14 20 22 40 T 38 40 T 54 40 T 70 40"/>
+              <path class="curve cos" d="M 6 22 Q 14 42 22 22 T 38 22 T 54 22 T 70 22"/>
+              <circle class="cross" cx="22" cy="40" r="1.8"/>
+              <circle class="cross" cx="54" cy="40" r="1.8"/>
+            </svg>
+          </div>
+          <h3>Math Connections</h3>
+          <span class="discipline">Precalculus</span>
+        </article>
+        <article class="specimen frag" data-spec="5" role="listitem">
+          <span class="roman" aria-hidden="true">V</span>
+          <div class="glyph-wrap">
+            <svg class="glyph g-writing" viewBox="0 0 80 80" aria-hidden="true">
+              <rect class="page" x="16" y="10" width="48" height="60" rx="1"/>
+              <line class="rule" x1="22" y1="22" x2="58" y2="22"/>
+              <line class="rule" x1="22" y1="30" x2="54" y2="30"/>
+              <line class="rule indent" x1="28" y1="38" x2="58" y2="38"/>
+              <line class="rule indent" x1="28" y1="46" x2="48" y2="46"/>
+              <line class="rule" x1="22" y1="54" x2="56" y2="54"/>
+              <line class="rule" x1="22" y1="62" x2="44" y2="62"/>
+              <text class="cite" x="60" y="24">&#42;</text>
+              <line class="margin" x1="20" y1="10" x2="20" y2="70"/>
+            </svg>
+          </div>
+          <h3>Research Writing</h3>
+          <span class="discipline">Sociology</span>
+        </article>
+      </div>
+    </figure>
   </section>
   <section class="slide slide-break" data-slide="break-sule" data-variant="paper-title" aria-label="Sule Aksoy paper title">
     <div class="content" data-numeral="04">
@@ -591,14 +718,23 @@
     </div>
     <figure class="stage figure-stage diagram-stage" aria-hidden="true"></figure>
   </section>
-  <section class="slide placeholder-slide odd-layout" data-slide="sule-3" aria-label="Sule Aksoy: CALI as evidence">
+  <section class="slide placeholder-slide crowded ladder-slide horizontal-ladder" data-slide="sule-3" aria-label="Sule Aksoy: CALI as evidence">
     <div class="content">
       <div class="label">&Scedil;ule Aksoy · SA3</div>
       <h1>CALI as evidence</h1>
-      <ul class="parallel-points" style="margin-top: 1em;">
-        <li class="frag">Faculty reflections on the inevitability</li>
-        <li class="frag">Written reflections from online meetings focusing on knowledge production, agency, and pedagogy</li>
-        <li class="frag">A qualitative case study</li>
+      <ul class="ladder-list">
+        <li class="frag">
+          <span class="ladder-num" aria-hidden="true">01</span>
+          <span class="ladder-text">Faculty reflections on the inevitability</span>
+        </li>
+        <li class="frag">
+          <span class="ladder-num" aria-hidden="true">02</span>
+          <span class="ladder-text">Written reflections from online meetings focusing on knowledge production, agency, and pedagogy</span>
+        </li>
+        <li class="frag">
+          <span class="ladder-num" aria-hidden="true">03</span>
+          <span class="ladder-text">A qualitative case study</span>
+        </li>
       </ul>
     </div>
     <figure class="stage figure-stage diagram-stage" aria-hidden="true"></figure>
@@ -713,6 +849,9 @@
     </div>
     <figure class="stage figure-stage diagram-stage" aria-hidden="true"></figure>
   </section>
+  <script src="src/sa1-viz.js"></script>
+  <script src="src/sa2-viz.js"></script>
+  <script src="src/sa4-viz.js"></script>
   <script src="src/sa9-viz.js"></script>
   <section class="slide slide-testimonial dense-quotes" data-slide="sule-10" aria-label="Sule Aksoy: Conclusion — Frame #4">
     <div class="content">

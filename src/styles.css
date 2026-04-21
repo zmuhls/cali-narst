@@ -171,9 +171,9 @@ section.slide.active { display: flex; }
 section.slide > figure.stage[aria-hidden="true"] { display: none !important; }
 @media (min-width: 900px) {
   section.slide:has(> figure.stage[aria-hidden="true"]) .content { flex: 1 1 100%; max-width: 100%; }
-  section.slide.placeholder-slide:has(> figure.stage[aria-hidden="true"]) .content h1 { max-width: 28ch; }
-  section.slide.placeholder-slide:has(> figure.stage[aria-hidden="true"]) .content h2,
-  section.slide.placeholder-slide:has(> figure.stage[aria-hidden="true"]) .content ul { max-width: 52ch; }
+  section.slide.placeholder-slide:has(> figure.stage[aria-hidden="true"]):not(.ladder-slide) .content h1 { max-width: 28ch; }
+  section.slide.placeholder-slide:has(> figure.stage[aria-hidden="true"]):not(.ladder-slide) .content h2,
+  section.slide.placeholder-slide:has(> figure.stage[aria-hidden="true"]):not(.ladder-slide) .content ul { max-width: 52ch; }
 }
 
 .frag { opacity: 0; transform: translateY(5px); transition: opacity 0.35s ease, transform 0.35s ease; pointer-events: none; }
@@ -766,6 +766,11 @@ body.overview section.slide[data-slide="break-sule"]   { border-top: 2px solid v
 @media (min-width: 720px) {
   .slide-testimonial .content { flex: 1 1 100%; max-width: none; }
   .slide-testimonial .stage { display: none; }
+  /* SA10 carries a right-rail viz (sa10-viz.js). Override the testimonial full-width
+     rule so the content yields a 45% rail to figure.stage and the canvas doesn't
+     render behind the content's backdrop-filter. */
+  section.slide[data-slide="sule-10"].slide-testimonial .content { flex: 0 1 55%; max-width: 55%; }
+  section.slide[data-slide="sule-10"].slide-testimonial .stage { display: flex; flex: 1 1 45%; position: relative; }
 }
 .quote-stack { display: flex; flex-direction: column; gap: 0.9em; margin-top: 1.1em; }
 .quote-stack blockquote {
@@ -1224,6 +1229,21 @@ body.overview section.slide[data-slide="break-sule"]   { border-top: 2px solid v
 }
 .stage-gallery.sandbox-gallery .gallery-dots { bottom: 4px; }
 
+/* ZM9 CUNY AI Lab badge — sits below the bulleted text in the left column. */
+.zm9-lab-badge {
+  margin-top: 1.1em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.zm9-lab-badge img {
+  width: clamp(150px, 18vw, 240px);
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04), 0 6px 24px rgba(0,0,0,0.25);
+}
+
 /* LW6 "Our Goals" — editorial manifesto arrayed diagonally.
    Three goals distributed across the full content height, anchored to a 116° sage
    thread. Each goal is numbered (01 / 02 / 03) and the numeral doubles as an
@@ -1379,6 +1399,18 @@ section.slide[data-slide="sule-8"] .content .frag > ul > li {
     flex: 1 1 50%;
     max-width: 50%;
   }
+  /* SA2 (Conceptual Background) + SA4 (Data analysis) carry citation-dense
+     bullets that need more column width than the default 33/67 allows. */
+  section.slide[data-slide="sule-2"].placeholder-slide.even-layout .content,
+  section.slide[data-slide="sule-4"].placeholder-slide.even-layout .content {
+    flex: 0 1 50%;
+    max-width: 50%;
+  }
+  section.slide[data-slide="sule-2"].placeholder-slide.even-layout .stage,
+  section.slide[data-slide="sule-4"].placeholder-slide.even-layout .stage {
+    flex: 1 1 50%;
+    max-width: 50%;
+  }
 }
 
 /* LH5 — Research and Information: give left column more room */
@@ -1492,4 +1524,271 @@ section.slide[data-slide="laurie-11"].slide-testimonial.dense-quotes .parallel-p
   vertical-align: baseline;
   margin-right: 0.45em;
   transform: translateY(0.05em);
+}
+
+/* ── ZM3 · Bricolage pullquote ─────────────────────────────────────────────
+   The Resnick/bricoleur definition is pulled out of the parallel-points list
+   on ZM3 ("Tinkering as Bricolage") and rendered as a block quote so the
+   citation reads as a discrete unit rather than a fourth item. Left-ruled
+   in the zach amber accent; display font, italic. */
+.zm3-pullquote {
+  margin: clamp(0.9em, 1.4vw, 1.4em) 0 0;
+  padding: clamp(0.5em, 0.9vw, 0.9em) 0 clamp(0.4em, 0.8vw, 0.7em) clamp(0.9em, 1.4vw, 1.3em);
+  border-left: 2px solid color-mix(in oklab, var(--accent-zach) 70%, transparent);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--fs-body-compact, clamp(15px, 1.15vw, 20px));
+  line-height: 1.42;
+  color: rgba(236, 241, 247, 0.9);
+  text-wrap: pretty;
+}
+.zm3-pullquote p { margin: 0; }
+.zm3-pullquote em {
+  font-style: italic;
+  color: var(--accent-zach);
+  font-weight: 500;
+}
+
+/* ── ZM10 · Cohort 2 ladder reveal ─────────────────────────────────────────
+   Five scaffolds cascade diagonally top-left to bottom-right, mirroring
+   LW6's "Our Goals" ladder but with five rungs and the zach amber accent.
+   Base ladder rules live above; the overrides below swap the accent and
+   extend the cascade offsets to items 4 and 5. */
+
+.zm10-subtitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--fs-body-compact, clamp(14px, 1.1vw, 19px));
+  color: rgba(232, 200, 159, 0.78);
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  margin: 1.2em 0 0;
+  max-width: 48ch;
+}
+
+section.slide[data-slide="zach-talk-10"] .ladder-list .ladder-num {
+  color: var(--accent-zach);
+}
+section.slide[data-slide="zach-talk-10"] .ladder-list .ladder-num::before {
+  background: color-mix(in oklab, var(--accent-zach) 70%, transparent);
+}
+
+section.slide[data-slide="zach-talk-10"] .ladder-list li:nth-child(4) {
+  margin-left: clamp(3rem, 21vw, 18rem);
+  align-self: flex-start;
+}
+section.slide[data-slide="zach-talk-10"] .ladder-list li:nth-child(5) {
+  margin-left: clamp(4rem, 28vw, 24rem);
+  align-self: flex-start;
+}
+
+@media (max-width: 720px) {
+  section.slide[data-slide="zach-talk-10"] .ladder-list li:nth-child(4) { margin-left: 24%; }
+  section.slide[data-slide="zach-talk-10"] .ladder-list li:nth-child(5) { margin-left: 32%; }
+}
+
+/* ── ZM2 · Tinkering components grid ───────────────────────────────────────
+   Eight tinkering components laid out as a 4×2 grid of ladder entries
+   spanning the whole slide. Each cell has a monospace numeric cap, a
+   display-font header, and a short body line. Base ladder diagonal cascade
+   offsets are reset; items sit flush in their grid cells. */
+
+section.slide[data-slide="zach-talk-2"].ladder-slide .content ul.ladder-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, auto);
+  column-gap: clamp(1.4rem, 3vw, 2.8rem);
+  row-gap: clamp(1.8rem, 4vw, 3.4rem);
+  margin-top: clamp(1.8rem, 4vw, 3.2rem);
+  padding: 0;
+  flex: 0 1 auto;
+  max-width: none;
+  width: 100%;
+}
+
+section.slide[data-slide="zach-talk-2"].ladder-slide .content ul.ladder-list li,
+section.slide[data-slide="zach-talk-2"].ladder-slide .content ul.ladder-list li:nth-child(1),
+section.slide[data-slide="zach-talk-2"].ladder-slide .content ul.ladder-list li:nth-child(2),
+section.slide[data-slide="zach-talk-2"].ladder-slide .content ul.ladder-list li:nth-child(3) {
+  margin-left: 0;
+  align-self: start;
+  padding-top: clamp(0.55rem, 1.3vw, 1rem);
+  gap: clamp(0.35rem, 0.8vw, 0.6rem);
+  position: relative;
+}
+
+/* Staggered cascade — each column drops further than the last, creating a
+   diagonal sweep across the grid. Row 2 inherits the same column offsets so
+   the two rows mirror each other. */
+section.slide[data-slide="zach-talk-2"].ladder-slide .content ul.ladder-list li:nth-child(4n+1) {
+  transform: translateY(0);
+}
+section.slide[data-slide="zach-talk-2"].ladder-slide .content ul.ladder-list li:nth-child(4n+2) {
+  transform: translateY(clamp(0.8rem, 1.8vw, 1.6rem));
+}
+section.slide[data-slide="zach-talk-2"].ladder-slide .content ul.ladder-list li:nth-child(4n+3) {
+  transform: translateY(clamp(1.6rem, 3.6vw, 3.2rem));
+}
+section.slide[data-slide="zach-talk-2"].ladder-slide .content ul.ladder-list li:nth-child(4n) {
+  transform: translateY(clamp(2.4rem, 5.4vw, 4.8rem));
+}
+
+section.slide[data-slide="zach-talk-2"].ladder-slide .content ul.ladder-list li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: clamp(22px, 2vw, 30px);
+  height: 1px;
+  background: color-mix(in oklab, var(--accent-zach) 75%, transparent);
+  opacity: 0.85;
+}
+
+section.slide[data-slide="zach-talk-2"].ladder-slide .content ul.ladder-list .ladder-num {
+  color: var(--accent-zach);
+  letter-spacing: 0.22em;
+}
+section.slide[data-slide="zach-talk-2"].ladder-slide .content ul.ladder-list .ladder-num::before {
+  content: none;
+}
+
+section.slide[data-slide="zach-talk-2"].ladder-slide .content ul.ladder-list .ladder-text {
+  white-space: normal;
+  font-size: clamp(20px, 2.1vw, 32px);
+  line-height: 1.12;
+  max-width: 14ch;
+  hyphens: manual;
+  text-wrap: balance;
+}
+
+section.slide[data-slide="zach-talk-2"].ladder-slide .content ul.ladder-list .ladder-body {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: clamp(13px, 1.15vw, 17px);
+  line-height: 1.32;
+  color: rgba(218,225,232,0.72);
+  max-width: 22ch;
+  margin-top: clamp(0.25rem, 0.6vw, 0.45rem);
+  text-wrap: pretty;
+}
+
+@media (max-width: 960px) {
+  section.slide[data-slide="zach-talk-2"].ladder-slide .content ul.ladder-list {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, auto);
+  }
+}
+@media (max-width: 560px) {
+  section.slide[data-slide="zach-talk-2"].ladder-slide .content ul.ladder-list {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, auto);
+  }
+}
+
+/* ── SA3 · Horizontal ladder (CALI as evidence) ────────────────────────────
+   Variant of the LW6/ZM10 ladder laid sideways. The three rungs become
+   columns arrayed between a faint top + bottom rail that span the full
+   content width. Accent swaps to Şule's lilac. The diagonal cascade offsets
+   inherited from the base rules are reset; text wraps within each column. */
+
+section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: clamp(1.4rem, 3.2vw, 3.2rem);
+  margin-top: clamp(2rem, 5vw, 3.8rem);
+  padding: clamp(1.5rem, 3.2vw, 2.8rem) 0 clamp(1.2rem, 2.6vw, 2.2rem);
+  flex: 0 1 auto;
+  position: relative;
+  max-width: none;
+  width: 100%;
+}
+
+section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list::before,
+section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklab, var(--accent-sule) 70%, transparent) 12%,
+    color-mix(in oklab, var(--accent-sule) 70%, transparent) 88%,
+    transparent 100%
+  );
+  opacity: 0.75;
+}
+section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list::before { top: 0; }
+section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list::after  { bottom: 0; }
+
+section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list li,
+section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list li:nth-child(1),
+section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list li:nth-child(2),
+section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list li:nth-child(3) {
+  flex: 1 1 0;
+  margin-left: 0;
+  align-self: stretch;
+  padding-top: clamp(0.7rem, 1.6vw, 1.2rem);
+  gap: clamp(0.55rem, 1.3vw, 1rem);
+  position: relative;
+}
+section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: clamp(16px, 1.8vw, 26px);
+  background: color-mix(in oklab, var(--accent-sule) 85%, transparent);
+  opacity: 0.9;
+}
+
+section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list .ladder-num {
+  color: var(--accent-sule);
+}
+section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list .ladder-num::before {
+  background: color-mix(in oklab, var(--accent-sule) 70%, transparent);
+}
+
+section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list .ladder-text {
+  white-space: normal;
+  font-size: clamp(18px, 1.9vw, 28px);
+  line-height: 1.22;
+  max-width: 18ch;
+  hyphens: manual;
+  text-wrap: balance;
+}
+
+@media (max-width: 720px) {
+  section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(1.4rem, 5vw, 2.2rem);
+    padding: clamp(1rem, 4vw, 1.6rem) 0;
+  }
+  section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list::before,
+  section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list::after {
+    background: color-mix(in oklab, var(--accent-sule) 60%, transparent);
+  }
+  section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list li,
+  section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list li:nth-child(1),
+  section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list li:nth-child(2),
+  section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list li:nth-child(3) {
+    margin-left: 0;
+    padding-top: 0;
+    padding-left: clamp(1rem, 4vw, 1.6rem);
+  }
+  section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list li::before {
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+  }
+  section.slide[data-slide="sule-3"].ladder-slide .content ul.ladder-list .ladder-text {
+    max-width: none;
+  }
 }
