@@ -1184,6 +1184,19 @@ section.slide[data-slide^="laurie-"]:not(.dense-quotes) .content .outline-list l
   }
 }
 
+/* LH8 — Interventions for Teaching Critical AI Literacy: half-and-half.
+   Overrides the default even-layout 33/67 split for this slide only. */
+@media (min-width: 720px) {
+  section.slide[data-slide="laurie-8"].placeholder-slide.even-layout .content {
+    flex: 0 1 50%;
+    max-width: 50%;
+  }
+  section.slide[data-slide="laurie-8"].placeholder-slide.even-layout .stage {
+    flex: 1 1 50%;
+    max-width: 50%;
+  }
+}
+
 /* LH4 — Research and Information: give left column more room */
 section.slide[data-slide="laurie-4"] .two-col-inner {
   grid-template-columns: 1.4fr 1fr;
