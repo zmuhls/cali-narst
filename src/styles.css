@@ -1399,14 +1399,14 @@ section.slide[data-slide="laurie-11"].slide-testimonial.dense-quotes .parallel-p
   margin-bottom: 6px;
 }
 
-/* ZM8 — AmigAI Tinkering with System Prompts: Frappe grouped-bar chart.
-   Renders the two AmigAI institutional signatures (Baruch vs Hunter
-   change-log modalities: prompt rewrites, token tuning, temperature
-   tuning, persona pivots). Captions below the chart carry the
-   one-sentence pedagogical takeaway for each instructor. Palette mirrors
-   the zach-section amber + teal pair used elsewhere (zm5-viz.js). */
+/* ZM8 — Tinkering with System Prompts: Frappe grouped-bar chart.
+   Renders three institutional signatures (Baruch SPAN 105, Hunter
+   Espanol, six Brooklyn College HF Spaces) across five modalities:
+   prompt rewrites, token tuning, temperature tuning, distinct personas,
+   model swaps. Captions below carry one takeaway per institution.
+   Palette: amber (Baruch) + teal (Hunter) + mauve (Brooklyn). */
 .zm8-stage { padding: 1.1em 1.1em 0.9em; gap: 0.6em; }
-.zm8-chart { width: 100%; height: 300px; min-height: 240px; }
+.zm8-chart { width: 100%; height: 340px; min-height: 260px; }
 .zm8-chart svg { background: transparent; }
 .zm8-chart .chart-container { color: rgba(218,225,232,0.92); }
 .zm8-chart .title { fill: rgba(236,242,248,0.95); font-family: var(--font-display); }
