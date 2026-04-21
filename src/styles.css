@@ -794,7 +794,7 @@ body.overview section.slide[data-slide="break-sule"]   { border-top: 2px solid v
 }
 .slide-testimonial.tall .quote-stack blockquote { font-size: var(--fs-quote-tight); line-height: 1.4; }
 
-/* Slide-scoped: dense quote stack used on LH10 Collective World-building
+/* Slide-scoped: dense quote stack used on LH11 Collective World-building
    (3 stacked quotes + 4 takeaway bullets). Tighter type and gap so the takeaway
    list clears the sticky footer at 1024+ widths. */
 .slide-testimonial.dense-quotes .content { gap: 4px; }
@@ -855,7 +855,7 @@ body.overview section.slide[data-slide="break-sule"]   { border-top: 2px solid v
 .slide-break[data-variant="paper-title"] .break-tag { grid-row: 1; }
 .slide-break[data-variant="paper-title"] .content h1 { grid-row: 2; align-self: start; margin-top: 4px; }
 
-/* Two-col text split inside a presenter-titled slide (used for LH1 overview, LH7 syllabus) */
+/* Two-col text split inside a presenter-titled slide (used for LH1 overview, LH5 syllabus) */
 .content .outline-list { padding-left: 1.1em; }
 .content .outline-list li { margin-bottom: 0.45em; font-size: var(--fs-body-compact); color: rgba(232,238,245,0.9); }
 .content .outline-list li.frag { line-height: 1.35; }
@@ -928,7 +928,7 @@ body.overview section.slide[data-slide="break-sule"]   { border-top: 2px solid v
 [data-slide="luke-5"] .content { gap: 0.6em; }
 [data-slide="luke-5"] .map-mount { min-height: clamp(340px, 55vh, 560px); min-height: clamp(340px, 55dvh, 560px); }
 
-/* Slim visual header above numbered syllabus lists (LH7 right column) */
+/* Slim visual header above numbered syllabus lists (LH5 right column) */
 .syllabus-list { list-style: none; padding: 0; counter-reset: syllabus; }
 .syllabus-list li {
   counter-increment: syllabus;
@@ -1158,7 +1158,7 @@ body.overview section.slide[data-slide="break-sule"]   { border-top: 2px solid v
 }
 
 /* ------------------------------------------------------------------ */
-/* Laurie section layout tweaks (2026-04-21, post-LH2 cut)            */
+/* Laurie section layout tweaks (2026-04-21)                         */
 /* Font-size lives on the shared tokens so Laurie's dense slides do   */
 /* not overflow and do not read larger than Luke/Zach/Sule by eye.    */
 /* Only line-height / margin tightening lives here now. Dense-quotes  */
@@ -1171,50 +1171,50 @@ section.slide[data-slide^="laurie-"]:not(.dense-quotes) .content .outline-list l
   margin-bottom: 10px;
 }
 
-/* LH2 — Summer Institute: wider text column (2/3) + narrower image (1/3).
+/* LH3 — Summer Institute: wider text column (2/3) + narrower image (1/3).
    Overrides the default odd-layout 50/50 split for this slide only. */
 @media (min-width: 720px) {
-  section.slide[data-slide="laurie-2"].placeholder-slide.odd-layout .content {
+  section.slide[data-slide="laurie-3"].placeholder-slide.odd-layout .content {
     flex: 0 1 66.666%;
     max-width: 66.666%;
   }
-  section.slide[data-slide="laurie-2"].placeholder-slide.odd-layout .stage {
+  section.slide[data-slide="laurie-3"].placeholder-slide.odd-layout .stage {
     flex: 1 1 33.333%;
     max-width: 33.333%;
   }
 }
 
-/* LH8 — Interventions for Teaching Critical AI Literacy: half-and-half.
+/* LH9 — Interventions for Teaching Critical AI Literacy: half-and-half.
    Overrides the default even-layout 33/67 split for this slide only. */
 @media (min-width: 720px) {
-  section.slide[data-slide="laurie-8"].placeholder-slide.even-layout .content {
+  section.slide[data-slide="laurie-9"].placeholder-slide.even-layout .content {
     flex: 0 1 50%;
     max-width: 50%;
   }
-  section.slide[data-slide="laurie-8"].placeholder-slide.even-layout .stage {
+  section.slide[data-slide="laurie-9"].placeholder-slide.even-layout .stage {
     flex: 1 1 50%;
     max-width: 50%;
   }
 }
 
-/* LH4 — Research and Information: give left column more room */
-section.slide[data-slide="laurie-4"] .two-col-inner {
+/* LH5 — Research and Information: give left column more room */
+section.slide[data-slide="laurie-5"] .two-col-inner {
   grid-template-columns: 1.4fr 1fr;
 }
-section.slide[data-slide="laurie-4"] .two-col-inner .col ol li,
-section.slide[data-slide="laurie-4"] .two-col-inner .col ul li {
+section.slide[data-slide="laurie-5"] .two-col-inner .col ol li,
+section.slide[data-slide="laurie-5"] .two-col-inner .col ul li {
   line-height: 1.34;
   margin-bottom: 0.38em;
 }
 
-/* LH9 — Student Agency: crop NARST image to 50% of the right-panel width */
-section.slide[data-slide="laurie-9"] .stage {
+/* LH10 — Student Agency: crop NARST image to 50% of the right-panel width */
+section.slide[data-slide="laurie-10"] .stage {
   display: flex;
   align-items: center;
   justify-content: center;
   background: #080b10;
 }
-section.slide[data-slide="laurie-9"] .stage img {
+section.slide[data-slide="laurie-10"] .stage img {
   width: auto;
   height: auto;
   max-width: 50%;
@@ -1223,23 +1223,23 @@ section.slide[data-slide="laurie-9"] .stage img {
   margin: 0 auto;
 }
 
-/* LH10 — Collective World-building: pure testimonial, 3 quotes + 4 bullets.
+/* LH11 — Collective World-building: pure testimonial, 3 quotes + 4 bullets.
    Tightened gaps/margins so the whole card clears the sticky footer at
    laptop-panel heights (~768h) without needing to shrink the readable body. */
-section.slide[data-slide="laurie-10"].slide-testimonial.dense-quotes .quote-stack {
+section.slide[data-slide="laurie-11"].slide-testimonial.dense-quotes .quote-stack {
   gap: 0.42em;
   margin-top: 0.5em;
 }
-section.slide[data-slide="laurie-10"].slide-testimonial.dense-quotes .quote-stack blockquote {
+section.slide[data-slide="laurie-11"].slide-testimonial.dense-quotes .quote-stack blockquote {
   line-height: 1.3;
   padding: 0.4em 0.8em;
 }
-section.slide[data-slide="laurie-10"].slide-testimonial.dense-quotes .quote-stack cite {
+section.slide[data-slide="laurie-11"].slide-testimonial.dense-quotes .quote-stack cite {
   margin-top: 0.25em;
 }
-section.slide[data-slide="laurie-10"].slide-testimonial.dense-quotes .parallel-points {
+section.slide[data-slide="laurie-11"].slide-testimonial.dense-quotes .parallel-points {
   margin-top: 0.4em !important;
 }
-section.slide[data-slide="laurie-10"].slide-testimonial.dense-quotes .parallel-points li {
+section.slide[data-slide="laurie-11"].slide-testimonial.dense-quotes .parallel-points li {
   margin-bottom: 6px;
 }
