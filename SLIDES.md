@@ -124,10 +124,12 @@ Notes: One frame \-- arrayed across diagonally
 
 ---
 
-**SLIDE 7 — The Google Question**
+**SLIDE 7 — Funding**
 
+* Google.org
 * 3 years/1m  
-* Second grant: Empire AI Initiative
+* Second grant for Empire AI Initiative
+* Supportive relationship
 
 **Visual: gorg.png**
 
@@ -177,7 +179,7 @@ Left Panel:
 * Faculty Development Program  
 * Disciplinary Questions  
 * Develop Critical Stance / Criticality (Sano-Franchini, 2026\)  
-* Reflective, collaborative, critical inquiry 
+* Reflective, collaborative, interdisciplinary 
 
 **Visual: Faculty Questions.png**
 
@@ -190,7 +192,7 @@ Left Panel:
 **SLIDE 3 — Summer Institute** 
 
 * **Focus**: Teaching with, about, against AI  
-* **Methods:** Drawing/mapping, disciplinary working groups, affinity discussions, tinkering   
+* **Methods:** Disciplinary working groups, affinity discussions, tinkering, mapping (Futch & Fine, 2012)   
 * **Goals:**  Develop interventions; foster a community of practice; model critical inquiry (Lave & Wenger, 1991; Haraway, 1988; Harding, 1993\) 
 
 **Visual: Community of Practice.jpeg**
@@ -241,7 +243,7 @@ Right Panel
 **SLIDE 6 —  Integrated Reading and Composition**
 
 * Creativity and labor  
-* Student Expertise  
+* Students’ lived experiences and expertise  
 * Reflection on value of writing
 
 Visual: KM 1.png and KM 5.png

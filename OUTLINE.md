@@ -32,7 +32,7 @@ Every presenter also gets a paper-title section divider. References slides were 
 | 6 | LW4 | Defining Critical AI Literacy |
 | 7 | LW5 | The CUNY Context |
 | 8 | LW6 | Our Goals |
-| 9 | LW7 | The Google Question |
+| 9 | LW7 | Funding |
 | 10 | LW8 | CALI's Strategy |
 
 ---

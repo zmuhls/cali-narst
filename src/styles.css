@@ -1532,6 +1532,7 @@ section.slide[data-slide="laurie-11"].slide-testimonial.dense-quotes .quote-stac
   margin-top: 0.5em;
 }
 section.slide[data-slide="laurie-11"].slide-testimonial.dense-quotes .quote-stack blockquote {
+  font-size: var(--fs-quote);
   line-height: 1.3;
   padding: 0.4em 0.8em;
 }

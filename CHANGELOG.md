@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 2026-04-21 · Laurie content diffs + LH11 quote scale-up
+
+- **LH2 bullet 4** — "Reflective, collaborative, critical inquiry" → "Reflective, collaborative, interdisciplinary" per updated SLIDES.md.
+- **LH3 Methods line** — reordered to "Disciplinary working groups, affinity discussions, tinkering, mapping (Futch & Fine, 2012)" (mapping now terminal, citation added).
+- **LH6 bullet 2** — "Student Expertise" → "Students' lived experiences and expertise."
+- **LH11 blockquote font-size** — bumped from `--fs-quote-dense` (15–21px) to `--fs-quote` (19–28px) via explicit `font-size` on the existing `section.slide[data-slide="laurie-11"]...blockquote` override. Existing tightened gaps/padding preserved; may need another pass if 3-quote stack spills below the sticky footer at laptop-panel heights.
+- `SLIDES.md` Laurie section synced for LH2/LH3/LH6.
+
+## 2026-04-21 · LW7 rename + LW paper-title role reunified
+
+- **LW7 "The Google Question" → "Funding"** per updated SLIDES.md spec. Added "Google.org" as first bullet above "3 years / 1m"; existing "Second grant: Empire AI Initiative" and "Supportive relationship" bullets retained. `index.html` h1/aria-label and `OUTLINE.md` row 9 updated; `SLIDES.md` Luke entry synced (4 bullets total).
+- **Luke paper-title** — re-merged split role + affiliation lines back into a single `.affiliation` line ("Director, Teaching and Learning Center, CUNY Graduate Center") to match SLIDES.md and the CLAUDE.md role-line contract. The split introduced in commit `ac2686e` is reverted.
+
 ## 2026-04-21 · ZM9 cut (Cohort 2 in the Sandbox)
 
 - **Visible ZM9** (`data-slide="zach-talk-10"`, "Cohort 2 in the Sandbox") removed from `index.html` along with its five SVG-glyph specimens (Concept Mapping, Laboratory Workflows, Deep Listening, Math Connections, Research Writing).
