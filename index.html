@@ -7,7 +7,7 @@
   <title>NARST CALI Presentation, April 21, 2026</title>
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="stylesheet" href="vendor/fonts/fonts.css" />
-  <link rel="stylesheet" href="src/styles.css?v=20260421c" />
+  <link rel="stylesheet" href="src/styles.css?v=20260421d" />
 </head>
 <body>
 <div id="image-lightbox" class="lightbox" aria-hidden="true">
@@ -47,7 +47,8 @@
     <div class="content" data-numeral="01">
       <div class="break-tag" data-panelist-num="01">Luke Waltzer</div>
       <h1>The Critical AI Literacy Institute: Asserting and Preserving Scholarly Agency in the Age of AI</h1>
-      <p class="affiliation">Director, Teaching and Learning Center, CUNY Graduate Center</p>
+      <p class="presenter-role">Director</p>
+      <p class="affiliation">The Teaching and Learning Center, CUNY Graduate Center</p>
     </div>
   </section>
   <section class="slide placeholder-slide odd-layout" data-slide="luke-1" aria-label="Luke Waltzer: About the Teaching and Learning Center">
@@ -447,8 +448,11 @@
         <li class="frag">Susan Leigh Star: infrastructure becomes visible on breakdown</li>
       </ul>
     </div>
-    <figure class="stage figure-stage diagram-stage" aria-hidden="true"></figure>
+    <figure class="stage figure-stage diagram-stage">
+      <canvas id="zm4-canvas" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></canvas>
+    </figure>
   </section>
+  <script src="src/zm4-viz.js"></script>
   <section class="slide placeholder-slide even-layout" data-slide="zach-talk-5" aria-label="Zach Muhlbauer slide 5: Hyperparameters as Instructional Controls">
     <div class="content">
       <div class="label">Zach Muhlbauer &middot; ZM5</div>
@@ -461,11 +465,8 @@
         <li class="frag">At <strong>temperature 2.0</strong>, output begins to break down into repetition, incoherence, and stray fragments</li>
       </ul>
     </div>
-    <figure class="stage figure-stage diagram-stage" aria-hidden="true">
-      <!-- PLACEHOLDER: right-panel image showing model output at temperature 2.0 -
-           a breakdown that surfaces training-data residue (repeated tokens, dialect
-           bleed-through, hallucinated fragments of the pretraining corpus). Bridges
-           ZM5 (two-layer claim) into ZM7 (AmigAI glitch-as-infrastructural-monster). -->
+    <figure class="stage figure-stage">
+      <img src="images/hyperparameter-breakdown.png" alt="CUNY AI Lab Sandbox: Qwen3-235b at temperature 2.0 producing garbled polyglot output — repeated tokens, training-data residue, fragments of the pretraining corpus">
     </figure>
   </section>
   <section class="slide placeholder-slide odd-layout" data-slide="zach-talk-6" aria-label="Zach Muhlbauer slide 6: AmigAI Breakdown and Reconfiguration">
@@ -519,7 +520,9 @@
         <li class="frag">Model cards with preset system prompt tied to knowledge base, agentic skills, tool calling</li>
       </ul>
     </div>
-    <figure class="stage figure-stage diagram-stage" aria-hidden="true"></figure>
+    <figure class="stage figure-stage">
+      <img src="images/oi-anatomy.png" alt="CUNY AI Lab Sandbox interface anatomy: (1) new chat, (2) model selector, (3) model card info, (4) prompt input — showing AmigAI-Template as a preset model card">
+    </figure>
   </section>
   <section class="slide placeholder-slide even-layout" data-slide="zach-talk-10" aria-label="Zach Muhlbauer slide 10: Cohort 2 in the Sandbox">
     <div class="content">
@@ -723,6 +726,37 @@
       </ul>
     </div>
     <figure class="stage figure-stage diagram-stage" aria-hidden="true"></figure>
+  </section>
+  <section class="slide slide-two-col-text slide-references" data-slide="references" aria-label="Paper references and further reading">
+    <div class="content">
+      <div class="label">NARST 2026 &middot; CALI</div>
+      <h1>References &amp; Further Reading</h1>
+      <ul class="reference-list">
+        <li>Avraamidou, L. (2024).</li>
+        <li>Bang, M., et al. (2012).</li>
+        <li>Barad, K. (2007). <em>Meeting the Universe Halfway.</em></li>
+        <li>Cottom, T. M. (2026).</li>
+        <li>Crawford, K. (2021). <em>Atlas of AI.</em></li>
+        <li>Freire, P. (2000). <em>Pedagogy of the Oppressed.</em></li>
+        <li>Guest, O., Suarez, M., &amp; van Rooij, I. <em>Towards Critical Artificial Intelligence Literacies.</em></li>
+        <li>Hao, K. (2025). <em>Empire of AI.</em></li>
+        <li>Haraway, D. (1988). <em>Situated Knowledges.</em></li>
+        <li>Harding, S. (1993). <em>Rethinking Standpoint Epistemology.</em></li>
+        <li>Heeg, J., &amp; Avraamidou, L. (2023).</li>
+        <li>hooks, b. (1994). <em>Teaching to Transgress.</em></li>
+        <li>Johnson et al. <em>Glitch-as-infrastructural-monster.</em></li>
+        <li>Lave, J., &amp; Wenger, E. (1991). <em>Situated Learning.</em></li>
+        <li>Li, et al. (2023).</li>
+        <li>Louridas, P. (1999). <em>Design as Bricolage.</em></li>
+        <li>Morales-Doyle, D. (2019, 2023).</li>
+        <li>National Academies of Sciences, Engineering, and Medicine. (2025). <em>Equity in K-12 STEM Education.</em></li>
+        <li>Petrich, M., Wilkinson, K., &amp; Bevan, B. (2013). <em>It Looks Like Fun, but Are They Learning?</em></li>
+        <li>Phillip, T., et al. (2025).</li>
+        <li>Resnick, M., &amp; Rosenbaum, E. (2013). <em>Designing for Tinkerability.</em></li>
+        <li>Ricaurte, P. (2019).</li>
+        <li>Tadimalla, S., Cary, M., Hull, J., et al. <em>Comprehensive AI Literacy: The Case for Centering Human Agency.</em></li>
+      </ul>
+    </div>
   </section>
 </main>
 <footer class="sticky-footer">

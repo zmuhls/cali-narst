@@ -23,10 +23,13 @@ The deck should follow this structure:
 
 - 1 title slide
 - 4 section-divider (paper-title) slides, one for each presenter
-- content slides per presenter (currently: Luke 8, Laurie 10, Zach 10, Sule 12)
-- references slides removed 2026-04-20
+- content slides per presenter (currently: Luke 8, Laurie 11, Zach 9, Sule 12)
+- 1 consolidated references slide at the end (added 2026-04-21)
 
-That yields 45 total slides. (LH2 "Defining AI Literacy", LH2 "Critical AI Literacy Institute", and ZM4 "Historical OCR" cut on 2026-04-20 to match SLIDES.md and Laurie's revised running order.)
+That yields 46 total slides. Per-presenter references slides were removed
+2026-04-20 and replaced 2026-04-21 with a single alphabetical
+"References &amp; Further Reading" slide at position 46
+(`data-slide="references"`).
 
 ## Presenters and talk blocks
 
