@@ -651,7 +651,7 @@ section.slide.slide-title { padding: var(--header-h) 0 calc(0px + var(--footer-h
 .zm4-item__text {
   margin: 0;
   font-family: var(--font-body);
-  font-size: clamp(15px, 1.3vw, 20px);
+  font-size: var(--fs-body-compact);
   line-height: 1.45;
   color: rgba(216, 224, 236, 0.88);
 }
@@ -893,6 +893,17 @@ body.overview section.slide[data-slide="break-sule"]   { border-top: 2px solid v
 section.slide[data-slide^="sule-"].slide-testimonial.dense-quotes .quote-stack blockquote {
   font-size: var(--fs-quote-tight);
   line-height: 1.34;
+}
+
+/* SA5-7 (the three theme slides, deck positions 37-39) — full-width testimonial
+   with only 2 quotes each and no right-rail, so there's room to step up from
+   --fs-quote-tight to --fs-quote (19-28px) per presenter request. SA9/10 keep
+   the tighter scale because they share the slide with a figure rail. */
+section.slide[data-slide="sule-5"].slide-testimonial.dense-quotes .quote-stack blockquote,
+section.slide[data-slide="sule-6"].slide-testimonial.dense-quotes .quote-stack blockquote,
+section.slide[data-slide="sule-7"].slide-testimonial.dense-quotes .quote-stack blockquote {
+  font-size: var(--fs-quote);
+  line-height: 1.38;
 }
 
 /* Two-column content slide (no stage): left + right columns of content */
@@ -1511,6 +1522,16 @@ section.slide[data-slide="sule-8"] .content .parallel-points li {
   font-size: var(--fs-body-lead);
   line-height: 1.38;
   margin-bottom: 12px;
+}
+
+/* ZM1 (deck pos 24) + ZM8 (deck pos 30): slight bump from the default
+   zach-talk --fs-body-compact up to --fs-body. Short bullets + right-rail
+   viz, so the column has room to carry the larger scale. */
+section.slide[data-slide="zach-talk-1"] .content .parallel-points li,
+section.slide[data-slide="zach-talk-8"] .content .parallel-points li {
+  font-size: var(--fs-body);
+  line-height: 1.38;
+  margin-bottom: 10px;
 }
 
 /* LH3 — Summer Institute: wider text column (2/3) + narrower image (1/3).
