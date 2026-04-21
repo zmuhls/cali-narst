@@ -935,20 +935,31 @@ body.overview section.slide[data-slide="break-sule"]   { border-top: 2px solid v
    two-column balanced page; dots pin to the bottom of the carousel. All
    typography flows through the existing .slide-references .reference-list
    rules above so spacing stays consistent across pages. */
+/* Let the references content panel grow to fill the slide so the carousel
+   can cap itself exactly at the remaining height (instead of overflowing
+   past the sticky footer). */
+.slide-references .content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
 .slide-references .stage-gallery.references-carousel {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   width: 100%;
-  min-height: 70vh;
+  flex: 1 1 auto;
+  min-height: 0;
   margin-top: 0.4em;
-  padding-bottom: 32px;
+  padding-bottom: 28px;
+  overflow: hidden;
 }
 .slide-references .stage-gallery.references-carousel .gallery-item {
   display: block;
   align-items: initial;
   justify-content: initial;
   padding: 0;
+  height: 100%;
   overflow: hidden;
 }
 .slide-references .stage-gallery.references-carousel .reference-list {
@@ -956,8 +967,8 @@ body.overview section.slide[data-slide="break-sule"]   { border-top: 2px solid v
 }
 .slide-references .stage-gallery.references-carousel .reference-list li {
   font-size: var(--fs-body-compact);
-  line-height: 1.32;
-  margin: 0 0 0.45em;
+  line-height: 1.3;
+  margin: 0 0 0.35em;
 }
 .slide-references .stage-gallery.references-carousel .gallery-dots {
   bottom: 4px;
