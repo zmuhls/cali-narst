@@ -1,5 +1,35 @@
 # CHANGELOG
 
+## 2026-04-21 · Consolidated references slide + font sub-clamp audit
+
+Two passes today: (1) a type-consistency audit that pulled every body-text
+`clamp()` back onto the `--fs-*` tokens at `:root`; (2) a new consolidated
+references slide appended at the end of the deck so attendees can capture
+the citation list without interrupting the body of each talk.
+
+### Font token consolidation
+
+- Removed the `section.slide[data-slide^="laurie-"] .content li { font-size: clamp(25px, 2.35vw, 38px) }` rule. That selector was overriding `--fs-dense-li` for every Laurie slide, producing 38px bullets while Luke/Zach/Sule ran at 26px dense / 32px body — a ~45% cross-presenter size jump that failed the eye test and directly caused the laurie-3 and laurie-8 dense-slide vertical overflow.
+- Dropped inline sub-clamps on LH4 (`.col h3`, `.col ol li`), LH7 (`.quote-stack blockquote`, `cite`), and LH10 (`.quote-stack blockquote`, `.parallel-points li`). All bodies now read from `--fs-body`, `--fs-body-compact`, `--fs-quote`, `--fs-quote-tight`, `--fs-quote-dense`, `--fs-dense-li`, `--fs-label`, `--fs-cite`, `--fs-meta`.
+- Scoped the remaining Laurie-wide `line-height` / `margin-bottom` rule with `:not(.dense-quotes)` so LH11 (Collective World-building) isn't hijacked by the general Laurie bump.
+- Tightened LH4 syllabus margins (0.55em → 0.38em) and LH11 testimonial gaps (quote-stack gap 0.55em → 0.42em, blockquote padding 0.55em → 0.4em, parallel-points margin-top 0.65em → 0.4em) to keep both slides clear of the sticky footer at 768h laptop-panel heights — no type-size change.
+
+### References slide (slide 46)
+
+- Added `<section class="slide slide-two-col-text slide-references" data-slide="references" aria-label="Paper references and further reading">` after sule-12.
+- Layout: single flat alphabetical `<ul class="reference-list">` with 23 entries, balanced across two columns via CSS `column-count: 2` + `column-rule`. No per-presenter columns — Luke has no formal citations, and the alphabetical order keeps the list compact.
+- Type: `--fs-body-compact` on list items, `--fs-label` via the existing `.content .label` pattern. No inline clamps introduced.
+- Full bibliographic expansion (volume/journal/pages) deferred to the presenters per TODO.md.
+
+### Files touched
+
+- `index.html` — new references slide after sule-12; scrubber `max="45" → "46"`; counter `1 / 45 → 1 / 46`; cache-buster `?v=20260421c → ?v=20260421d`.
+- `src/styles.css` — appended `.slide-references .reference-list` block near the `.slide-two-col-text` rules; removed inline sub-clamps on laurie-4, laurie-7, laurie-10 overrides; simplified Laurie-wide rule to layout-only and scoped to `:not(.dense-quotes)`.
+- `TODO.md` — removed the "References slides" item; added LH1, ZM5, ZM8, SA1, SA2 as outstanding `Visual:` specs; appended a "References slide — expansion pending" section listing short-form entries that still need full bibliographic info.
+- `CLAUDE.md` — structure counts updated (Luke 8, Laurie 11, Zach 9, Sule 12, 46 total including references slide).
+
+---
+
 ## 2026-04-20 · Laurie section revisions (per presenter feedback)
 
 Second Laurie pass driven by reviewing the deck slide-by-slide. One slide cut, the full section renumbered, several visual adjustments, and a uniform font bump for readability at presentation distance.

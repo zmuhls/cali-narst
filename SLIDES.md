@@ -104,7 +104,7 @@ Tadimalla, Cary, Hull, et al, “Comprehensive AI Literacy: The Case for Centeri
 * Large, federated system  
 * Heavy turnover at central office   
 * Emphasis on career-connected learning  
-* Vulnerable population
+* Minoritized population
 
 **Visual: cuny.jpg**
 

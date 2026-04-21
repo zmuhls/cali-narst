@@ -1187,15 +1187,17 @@ body.overview section.slide[data-slide="break-sule"]   { border-top: 2px solid v
 }
 
 /* ------------------------------------------------------------------ */
-/* Laurie section layout tweaks (2026-04-21)                         */
-/* Font-size lives on the shared tokens so Laurie's dense slides do   */
-/* not overflow and do not read larger than Luke/Zach/Sule by eye.    */
-/* Only line-height / margin tightening lives here now. Dense-quotes  */
-/* testimonials are excluded — their own class rules already tighten. */
+/* Laurie section font normalization (2026-04-21)                    */
+/* All LH1–LH11 body bullets resolve to --fs-body-compact so the     */
+/* reading rhythm stays coherent across the block regardless of      */
+/* whether a slide trips the auto-dense (5-bullet) rule or carries   */
+/* the default --fs-body. Dense-quotes (LH11) has its own tighter    */
+/* li rule and is excluded. LH8's blockquote keeps --fs-quote-tight. */
 /* ------------------------------------------------------------------ */
 section.slide[data-slide^="laurie-"]:not(.dense-quotes) .content li,
 section.slide[data-slide^="laurie-"]:not(.dense-quotes) .content .parallel-points li,
 section.slide[data-slide^="laurie-"]:not(.dense-quotes) .content .outline-list li {
+  font-size: var(--fs-body-compact);
   line-height: 1.4;
   margin-bottom: 10px;
 }

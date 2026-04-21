@@ -134,7 +134,7 @@
         <li class="frag">Large, federated system</li>
         <li class="frag">Heavy turnover at central office</li>
         <li class="frag">Emphasis on career-connected learning</li>
-        <li class="frag">Vulnerable population</li>
+        <li class="frag">Minoritized population</li>
       </ul>
     </div>
     <figure class="stage figure-stage">
@@ -458,16 +458,13 @@
       <div class="label">Zach Muhlbauer &middot; ZM5</div>
       <h1>Hyperparameters as Instructional Controls</h1>
       <ul class="parallel-points" style="margin-top: 1em;">
-        <li class="frag"><strong>Temperature</strong> controls how predictable or varied a response will be</li>
-        <li class="frag"><strong>Top-p</strong> controls how narrow or wide the model&rsquo;s next-word choices remain</li>
+        <li class="frag"><strong>Temperature</strong>: predictable &harr; varied</li>
+        <li class="frag"><strong>Top-p</strong>: narrow &harr; wide word pool</li>
         <li class="frag">These settings can align output with classroom goals or push it toward drift</li>
-        <li class="frag">At extreme settings, the model&rsquo;s instability becomes visible</li>
-        <li class="frag">At <strong>temperature 2.0</strong>, output begins to break down into repetition, incoherence, and stray fragments</li>
+        <li class="frag">At <strong>temperature 2.0</strong>, output drifts into repeated tokens, dialect bleed-through, fragments of the pretraining corpus</li>
       </ul>
     </div>
-    <figure class="stage figure-stage">
-      <img src="images/hyperparameter-breakdown.png" alt="CUNY AI Lab Sandbox: Qwen3-235b at temperature 2.0 producing garbled polyglot output — repeated tokens, training-data residue, fragments of the pretraining corpus">
-    </figure>
+    <figure class="stage figure-stage" aria-hidden="true"></figure>
   </section>
   <section class="slide placeholder-slide odd-layout" data-slide="zach-talk-6" aria-label="Zach Muhlbauer slide 6: AmigAI Breakdown and Reconfiguration">
     <div class="content">
@@ -766,14 +763,14 @@
   <div class="footer-slider">
     <button class="footer-arrow" id="btn-prev" aria-label="Previous slide">&#8592;</button>
     <div class="slider-track">
-      <input type="range" id="slide-scrubber" min="1" max="46" value="1" aria-label="Navigate to slide">
+      <input type="range" id="slide-scrubber" min="1" max="47" value="1" aria-label="Navigate to slide">
       <div class="slider-progress"></div>
       <div class="slider-thumb"></div>
     </div>
     <button class="footer-arrow" id="btn-next" aria-label="Next slide">&#8594;</button>
     <button class="footer-arrow" id="btn-fullscreen" aria-label="Toggle fullscreen" title="Toggle fullscreen (F)">&#9974;</button>
     <div class="footer-meta">
-      <span id="slider-counter">1 / 46</span>
+      <span id="slider-counter">1 / 47</span>
       <span class="kbd">Space</span>
       <a href="https://cuny.is/cali-narst" target="_blank" rel="noopener" class="footer-deck-link">cuny.is/cali-narst</a>
     </div>

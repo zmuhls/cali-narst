@@ -23,12 +23,12 @@ The deck should follow this structure:
 
 - 1 title slide
 - 4 section-divider (paper-title) slides, one for each presenter
-- content slides per presenter (currently: Luke 8, Laurie 11, Zach 9, Sule 12)
+- content slides per presenter (currently: Luke 8, Laurie 11, Zach 10, Sule 12)
 - 1 consolidated references slide at the end (added 2026-04-21)
 
-That yields 46 total slides. Per-presenter references slides were removed
+That yields 47 total slides. Per-presenter references slides were removed
 2026-04-20 and replaced 2026-04-21 with a single alphabetical
-"References &amp; Further Reading" slide at position 46
+"References &amp; Further Reading" slide at position 47
 (`data-slide="references"`).
 
 ## Presenters and talk blocks
