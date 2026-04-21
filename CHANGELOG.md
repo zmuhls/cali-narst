@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 2026-04-20 · Four interactive canvas viz for Zach + Sule sections
+
+Four bespoke vanilla-Canvas 2D visualizations added, all mirroring the
+`src/zm5-viz.js` lifecycle pattern (IntersectionObserver start/stop,
+`canvas.__deckResize` hook, DPR-aware, debounced window-resize). No new
+CDNs; local-asset contract preserved. Colors reuse `--accent-zach` and
+`--accent-sule`; type reuses `IBM Plex Mono`.
+
+- **ZM3 "Tinkering as Bricolage"** (`src/zm3-viz.js`, `#zm3-canvas`) — ~40 typographic fragments drift and gravitate toward a cursor-tracked attractor (auto-orbits when idle) but leave a central negative-space core unfilled: a "vague undecided gestalt" the audience's perception completes.
+- **ZM6 "Hyperparameters as Instructional Controls"** (`src/zm6-viz.js`, `#zm6-canvas`) — two draggable tracks (`temperature` 0–2, `top-p` 0–1) drive a live token stream. Past a hairline threshold at temp 1.7, tokens visibly fracture (glitch chars, repetition). The slide's claim demonstrated live. Figure on ZM6 gained the `diagram-stage` class (previously a bare hidden figure).
+- **SA9 "Implications for Science Education"** (`src/sa9-viz.js`, `#sa9-canvas`) — a floating magnifier (`--accent-sule` ring) follows the cursor across a faint monochrome noise field; inside the lens, subpixel micro-content resolves into legible scenes (epistemic agency, sensemaking, a 12-dot classroom, `AI ≠ inevitability`). Auto-drifts on a Lissajous path when idle. Literalizes the slide's argument that small critical acts are present-but-invisible until scrutinized.
+- **SA10 "Conclusion · planetary computation"** (`src/sa10-viz.js`, `#sa10-canvas`) — a white cloud silhouette peels back as cursor-X (or an auto-cycle) drives a reveal slider from `abstraction` → `materiality`; five stratified infrastructure layers fade in beneath: mineral extraction, labor, power, water/cooling, capital. Directly tracks the faculty quote's argument about the materiality of the cloud. Canvas sits at section-level `z-index:0` with `.content` lifted to `z-index:1` (the `.slide-testimonial .stage { display: none }` rule makes the figure path unavailable for this layout).
+
 ## 2026-04-21 · SA5 cut, ZM8 → ZM4 reorder, LH10 full-banner fix, LW7 bullet
 
 - **SA5 "Themes (transition)" cut.** Per the prior CLAUDE.md "MAYBE I DONT need this anymore" flag, the bare transition slide between Data analysis (SA4) and the three theme testimonials was removed. SA6–SA12 renumbered to SA5–SA11. Şule's section now runs 11 content slides (SA1–SA11). Deck scrubber `max=48 → 47`, counter `1/48 → 1/47`.
