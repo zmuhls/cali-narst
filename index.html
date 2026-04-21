@@ -473,44 +473,47 @@
       <div class="label">Zach Muhlbauer &middot; ZM6</div>
       <h1>Hyperparameters as Instructional Controls</h1>
       <ul class="parallel-points" style="margin-top: 1em;">
-        <li class="frag"><strong>Temperature</strong>: predictable &harr; varied</li>
-        <li class="frag"><strong>Top-p</strong>: narrow &harr; wide word pool</li>
-        <li class="frag">These settings can align output with classroom goals or push it toward drift</li>
-        <li class="frag">At <strong>temperature 2.0</strong>, output drifts into repeated tokens, dialect bleed-through, fragments of the pretraining corpus</li>
+        <li class="frag"><strong>Temperature</strong> &mdash; the model's creativity dial: low is steady and predictable, high is loose and surprising</li>
+        <li class="frag">Tuning the dial aligns output with a lesson's goal &mdash; or lets it drift</li>
+        <li class="frag">At <strong>temperature 2.0</strong>, coherence breaks: the model stutters, mixes languages, and surfaces scraps of its training data</li>
       </ul>
     </div>
     <figure class="stage figure-stage" aria-hidden="true"></figure>
   </section>
   <script src="src/zm6-viz.js"></script>
-  <section class="slide placeholder-slide odd-layout" data-slide="zach-talk-7" aria-label="Zach Muhlbauer slide 7: AmigAI Breakdown and Reconfiguration">
+  <section class="slide placeholder-slide odd-layout" data-slide="zach-talk-7" aria-label="Zach Muhlbauer slide 7: AmigAI — Toward Breakdown and Remediation">
     <div class="content">
       <div class="label">Zach Muhlbauer &middot; ZM7</div>
-      <h1>AmigAI</h1>
+      <h1>AmigAI: Toward Breakdown and Remediation</h1>
       <ul class="parallel-points" style="margin-top: 1em;">
-        <li class="frag">Cross-campus Spanish collaboration &mdash; heritage and non-native classes at <strong>Baruch</strong> and <strong>Hunter</strong></li>
-        <li class="frag">Flattening of <strong>low-resource dialects of Spanish</strong> into a standardized register; reproducing essentialized Latin American identities</li>
-        <li class="frag">One student reports, <em>&ldquo;This has an agenda&rdquo;</em></li>
+        <li class="frag">Conversational language-learning tool running on <strong>Gemma-3-27b</strong></li>
+        <li class="frag">Piloted in heritage and non-native Spanish classes at <strong>Hunter</strong> &amp; <strong>Baruch</strong></li>
+        <li class="frag">Flattens regional dialects into a dominant Spanish register</li>
+        <li class="frag">Reveals absence of low-resource languages in pretraining data</li>
+        <li class="frag">Underscores value of fine-tuning AI on low-resource languages</li>
       </ul>
     </div>
-    <figure class="stage figure-stage diagram-stage" aria-hidden="true"></figure>
+    <figure class="stage figure-stage">
+      <img src="images/amigai.png" alt="AmigAI-Template chat in Open WebUI: a Spanish greeting exchange where the model introduces itself as Ana and offers to discuss migration, health, or gentrification in New York">
+    </figure>
   </section>
   <section class="slide placeholder-slide odd-layout" data-slide="zach-talk-8" aria-label="Zach Muhlbauer slide 8: Tinkering with System Prompts across three institutions">
     <div class="content">
       <div class="label">Zach Muhlbauer &middot; ZM8</div>
       <h1>Tinkering with System Prompts</h1>
       <ul class="parallel-points" style="margin-top: 1em;">
-        <li class="frag">Prompt rewrites tracked through the changelog</li>
+        <li class="frag">Revisions tracked across participating campuses</li>
         <li class="frag">Settings shift with pedagogical goals</li>
         <li class="frag">Faculty test, compare, revise, repeat</li>
-        <li class="frag">Prompting becomes instructional design</li>
+        <li class="frag">AI model configuration as instructional design</li>
       </ul>
     </div>
     <figure class="stage figure-stage zm8-stage" aria-label="Grouped bar chart: three institutional signatures from Baruch SPAN 105, Hunter Espanol, and six Brooklyn College Hugging Face Spaces">
       <div id="zm8-chart" class="zm8-chart"></div>
       <figcaption class="zm8-chart-caption">
-        <p><span class="zm8-dot" style="background:#e8c89f"></span><strong>Baruch.</strong> Rewrites the prompt as a lesson plan &mdash; each system prompt anchors the bot to one course assignment.</p>
-        <p><span class="zm8-dot" style="background:#8fd5c3"></span><strong>Hunter.</strong> Tunes prompt and parameters as one instrument &mdash; temperature drops 0.7 &rarr; 0 as the bot moves from companion to scripted role.</p>
-        <p><span class="zm8-dot" style="background:#c9a6cf"></span><strong>Brooklyn.</strong> Runs six Spaces in parallel &mdash; one persona per assignment, sweeping temperature 0 &rarr; 2 and trialing five models inside a single Space.</p>
+        <p><span class="zm8-dot" style="background:#e8c89f"></span><strong>Baruch.</strong> Prompt rewrites as lesson plans, each anchored to one assignment.</p>
+        <p><span class="zm8-dot" style="background:#8fd5c3"></span><strong>Hunter.</strong> Prompt and parameters tuned together: temperature 0.7 &rarr; 0, companion to scripted role.</p>
+        <p><span class="zm8-dot" style="background:#c9a6cf"></span><strong>Brooklyn.</strong> Six Spaces in parallel, one persona per assignment. Temperature 0 &rarr; 2; five models tested within a single Space.</p>
       </figcaption>
     </figure>
   </section>
@@ -524,12 +527,22 @@
         <li class="frag">Self-hosted instance of <strong>Open WebUI</strong></li>
         <li class="frag">Open-weight language models from small to large in a single interface</li>
         <li class="frag">Only model providers with zero data retention and training turned off</li>
-        <li class="frag">Compare models side-by-side, write system prompts, adjust parameters, export transcripts</li>
+        <li class="frag" data-gallery-idx="1">Compare models side-by-side, write system prompts, adjust parameters, export transcripts</li>
         <li class="frag">Model cards with preset system prompt tied to knowledge base, agentic skills, tool calling</li>
       </ul>
     </div>
     <figure class="stage figure-stage">
-      <img src="images/oi-anatomy.png" alt="CUNY AI Lab Sandbox interface anatomy: (1) new chat, (2) model selector, (3) model card info, (4) prompt input — showing AmigAI-Template as a preset model card">
+      <div class="stage-gallery sandbox-gallery" data-frag-sync="1" aria-live="polite">
+        <div class="gallery-item active">
+          <img src="images/oi-anatomy.png" alt="CUNY AI Lab Sandbox interface anatomy: AmigAI-Template preset model card with new chat, model selector, model card info, and prompt input">
+          <figcaption>Anatomy: <strong>(1)</strong> new chat &middot; <strong>(2)</strong> model selector &middot; <strong>(3)</strong> model card info &middot; <strong>(4)</strong> prompt input</figcaption>
+        </div>
+        <div class="gallery-item">
+          <img src="images/oi-anatomy-2.png" alt="Side-by-side comparison in the Sandbox: AmigAI-Template (left) and Google Gemma 3 27B base (right) responding to the same Spanish greeting prompt">
+          <figcaption>Side-by-side compare: <strong>AmigAI&#8209;Template</strong> vs <strong>Google Gemma 3 27B</strong> &mdash; same prompt, two responses</figcaption>
+        </div>
+        <div class="gallery-dots" aria-label="Sandbox carousel navigation"></div>
+      </div>
     </figure>
   </section>
   <section class="slide placeholder-slide even-layout" data-slide="zach-talk-10" aria-label="Zach Muhlbauer slide 10: Cohort 2 in the Sandbox">

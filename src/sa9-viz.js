@@ -15,45 +15,121 @@
   var FG = '218,225,232';
   var BG = '#080b10';
 
-  // Micro-content: fixed coordinates (as fractions of W/H) that are invisible
-  // at slide scale but resolve under the magnifier lens.
-  var MICRO = [
-    { fx: 0.22, fy: 0.28, render: 'text', value: 'epistemic agency' },
-    { fx: 0.68, fy: 0.22, render: 'text', value: 'sensemaking' },
-    { fx: 0.38, fy: 0.58, render: 'text', value: 'resistance' },
-    { fx: 0.78, fy: 0.64, render: 'text', value: 'SSI-based instruction' },
-    { fx: 0.18, fy: 0.76, render: 'text', value: 'critical consciousness' },
-    { fx: 0.55, fy: 0.42, render: 'classroom' }, // 12-dot classroom diagram
-    { fx: 0.85, fy: 0.40, render: 'crossed-equals' } // AI ≠ inevitability
-  ];
-
   var ctx, W, H, dpr, raf, frame = 0, running = false;
-  var lens = { x: 0, y: 0, r: 110, active: false, idleFor: 0 };
-  var noiseField = null; // offscreen canvas
 
-  function buildNoise() {
-    // Low-contrast monochrome grid noise that reads as "uniform texture" at normal scale
-    var off = document.createElement('canvas');
-    off.width  = Math.max(1, Math.round(W));
-    off.height = Math.max(1, Math.round(H));
-    var o = off.getContext('2d');
-    var img = o.createImageData(off.width, off.height);
-    var d = img.data;
-    for (var i = 0; i < d.length; i += 4) {
-      var v = 22 + ((Math.random() * 16) | 0);
-      d[i] = v; d[i+1] = v; d[i+2] = v + 2; d[i+3] = 255;
+  // Embedding points in 2D projection of a higher-dim space.
+  // Stored as fractional coords; each has an implicit high-dim identity
+  // encoded in "embed" (8D vector) used to compute neighbor distances.
+  var points = [];
+  var POINT_COUNT = 160;
+
+  // 5 hotspots the magnifier tours — each a specific point index chosen
+  // to expose a distinct topology: dense cluster, sparse outlier, bridge, etc.
+  var hotspots = [];
+  var tourIdx = 0;
+  var tourT = 0;
+  var TOUR_HOLD = 120;    // frames paused on a hotspot
+  var TOUR_TRAVEL = 90;   // frames to travel between hotspots
+  var tourPhase = 'hold'; // 'hold' | 'travel'
+  var fromLens = { x: 0, y: 0 };
+  var toLens = { x: 0, y: 0 };
+
+  var lens = { x: 0, y: 0, r: 110, cursorOverride: 0 /* frames remaining */ };
+
+  function seed() {
+    points = [];
+    // Four cluster centers + scattered outliers
+    var clusters = [
+      { fx: 0.25, fy: 0.32, n: 40, sig: 0.06, sigDim: 0.25 },
+      { fx: 0.70, fy: 0.28, n: 35, sig: 0.07, sigDim: 0.35 },
+      { fx: 0.55, fy: 0.70, n: 45, sig: 0.05, sigDim: 0.20 },
+      { fx: 0.82, fy: 0.75, n: 25, sig: 0.08, sigDim: 0.40 }
+    ];
+    function gauss() { // box-muller
+      var u = 1 - Math.random(), v = 1 - Math.random();
+      return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
     }
-    o.putImageData(img, 0, 0);
-    // Overlay faint grid
-    o.strokeStyle = 'rgba(218,225,232,0.04)';
-    o.lineWidth = 1;
-    for (var gx = 0; gx < off.width; gx += 18) {
-      o.beginPath(); o.moveTo(gx, 0); o.lineTo(gx, off.height); o.stroke();
+    for (var c = 0; c < clusters.length; c++) {
+      var cl = clusters[c];
+      var centerEmbed = [];
+      for (var d = 0; d < 8; d++) centerEmbed.push(gauss());
+      for (var i = 0; i < cl.n; i++) {
+        var embed = [];
+        for (var dd = 0; dd < 8; dd++) embed.push(centerEmbed[dd] + gauss() * cl.sigDim);
+        points.push({
+          fx:    cl.fx + gauss() * cl.sig,
+          fy:    cl.fy + gauss() * cl.sig,
+          embed: embed,
+          cluster: c,
+          r: 1.0 + Math.random() * 0.5,
+          intensity: 0.3 + Math.random() * 0.5
+        });
+      }
     }
-    for (var gy = 0; gy < off.height; gy += 18) {
-      o.beginPath(); o.moveTo(0, gy); o.lineTo(off.width, gy); o.stroke();
+    // Outliers
+    for (var o = 0; o < POINT_COUNT - points.length; o++) {
+      var oe = [];
+      for (var de = 0; de < 8; de++) oe.push(gauss() * 1.8);
+      points.push({
+        fx: 0.1 + Math.random() * 0.8,
+        fy: 0.1 + Math.random() * 0.8,
+        embed: oe,
+        cluster: -1,
+        r: 0.8 + Math.random() * 0.4,
+        intensity: 0.18 + Math.random() * 0.22
+      });
     }
-    noiseField = off;
+    // Hotspots: pick one representative point per topology
+    hotspots = [];
+    // Dense pocket → random point in cluster 2 (largest)
+    hotspots.push(pickFromCluster(2));
+    // Cluster boundary → cluster 0
+    hotspots.push(pickFromCluster(0, true));
+    // Bridge (between 1 and 3): pick an outlier midway
+    hotspots.push(pickBridge(1, 3));
+    // Sparse outlier
+    hotspots.push(pickOutlier());
+    // Another dense cluster center
+    hotspots.push(pickFromCluster(1));
+  }
+
+  function pickFromCluster(cIdx, atBoundary) {
+    var members = points.filter(function (p) { return p.cluster === cIdx; });
+    if (!members.length) return points[0];
+    if (atBoundary) {
+      members.sort(function (a, b) {
+        var cx = 0, cy = 0;
+        for (var k = 0; k < members.length; k++) { cx += members[k].fx; cy += members[k].fy; }
+        cx /= members.length; cy /= members.length;
+        var da = (a.fx - cx) * (a.fx - cx) + (a.fy - cy) * (a.fy - cy);
+        var db = (b.fx - cx) * (b.fx - cx) + (b.fy - cy) * (b.fy - cy);
+        return db - da; // farther first → boundary
+      });
+    }
+    return members[0];
+  }
+  function pickBridge(a, b) {
+    var outliers = points.filter(function (p) { return p.cluster === -1; });
+    var ca = centroid(a), cb = centroid(b);
+    if (!outliers.length) return points[0];
+    outliers.sort(function (p1, p2) {
+      var d1 = Math.abs((p1.fx - (ca.x + cb.x) / 2)) + Math.abs((p1.fy - (ca.y + cb.y) / 2));
+      var d2 = Math.abs((p2.fx - (ca.x + cb.x) / 2)) + Math.abs((p2.fy - (ca.y + cb.y) / 2));
+      return d1 - d2;
+    });
+    return outliers[0];
+  }
+  function pickOutlier() {
+    var outliers = points.filter(function (p) { return p.cluster === -1; });
+    if (!outliers.length) return points[0];
+    return outliers[(Math.random() * outliers.length) | 0];
+  }
+  function centroid(cIdx) {
+    var x = 0, y = 0, n = 0;
+    for (var i = 0; i < points.length; i++) {
+      if (points[i].cluster === cIdx) { x += points[i].fx; y += points[i].fy; n++; }
+    }
+    return { x: x / n, y: y / n };
   }
 
   function reset() {
@@ -65,146 +141,207 @@
     canvas.height = Math.round(H * dpr);
     ctx = canvas.getContext('2d');
     ctx.scale(dpr, dpr);
-    lens.x = W * 0.5;
-    lens.y = H * 0.5;
-    lens.r = Math.min(W, H) * 0.18;
-    buildNoise();
+    lens.r = Math.min(W, H) * 0.16;
+    if (lens.r < 80) lens.r = 80;
+    seed();
+    lens.x = hotspots[0].fx * W;
+    lens.y = hotspots[0].fy * H;
+    fromLens.x = toLens.x = lens.x;
+    fromLens.y = toLens.y = lens.y;
+    tourPhase = 'hold';
+    tourT = 0;
+    tourIdx = 0;
     return true;
   }
 
-  function drawMicroItem(item, cx, cy, scale) {
-    // Render the micro-item at (cx, cy) at the given scale (magnified = ~7x)
-    ctx.save();
-    if (item.render === 'text') {
-      ctx.font = (11 * scale) + 'px "IBM Plex Mono", monospace';
-      ctx.fillStyle = 'rgba(' + FG + ',0.85)';
-      var w = ctx.measureText(item.value).width;
-      ctx.fillText(item.value, cx - w / 2, cy);
-    } else if (item.render === 'classroom') {
-      // 4x3 grid of tiny dots — a "classroom"
-      var step = 5 * scale;
-      for (var r = 0; r < 3; r++) {
-        for (var c = 0; c < 4; c++) {
-          ctx.beginPath();
-          ctx.arc(cx - step * 1.5 + c * step, cy - step + r * step, 0.9 * scale, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(' + SR + ',0.85)';
-          ctx.fill();
-        }
-      }
-      // seat of the teacher
-      ctx.beginPath();
-      ctx.arc(cx, cy + step * 2.2, 1.3 * scale, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(' + FG + ',0.7)';
-      ctx.fill();
-    } else if (item.render === 'crossed-equals') {
-      ctx.font = (10 * scale) + 'px "IBM Plex Mono", monospace';
-      ctx.fillStyle = 'rgba(' + FG + ',0.85)';
-      var left = 'AI';
-      var right = 'inevitability';
-      var lw = ctx.measureText(left).width;
-      var rw = ctx.measureText(right).width;
-      var gap = 14 * scale;
-      ctx.fillText(left, cx - lw - gap, cy);
-      ctx.fillText(right, cx + gap, cy);
-      // equals sign
-      ctx.strokeStyle = 'rgba(' + FG + ',0.7)';
-      ctx.lineWidth = 0.8 * scale;
-      ctx.beginPath();
-      ctx.moveTo(cx - gap * 0.6, cy - 2 * scale); ctx.lineTo(cx + gap * 0.6, cy - 2 * scale);
-      ctx.moveTo(cx - gap * 0.6, cy + 2 * scale); ctx.lineTo(cx + gap * 0.6, cy + 2 * scale);
-      ctx.stroke();
-      // slash through
-      ctx.strokeStyle = 'rgba(' + SR + ',0.9)';
-      ctx.lineWidth = 1.2 * scale;
-      ctx.beginPath();
-      ctx.moveTo(cx - gap * 0.8, cy + 5 * scale); ctx.lineTo(cx + gap * 0.8, cy - 5 * scale);
-      ctx.stroke();
+  function stepTour() {
+    if (lens.cursorOverride > 0) {
+      lens.cursorOverride -= 1;
+      return;
     }
+    tourT += 1;
+    if (tourPhase === 'hold') {
+      if (tourT >= TOUR_HOLD) {
+        tourPhase = 'travel';
+        tourT = 0;
+        tourIdx = (tourIdx + 1) % hotspots.length;
+        fromLens.x = lens.x;
+        fromLens.y = lens.y;
+        toLens.x = hotspots[tourIdx].fx * W;
+        toLens.y = hotspots[tourIdx].fy * H;
+      }
+    } else {
+      // ease-in-out cubic
+      var p = tourT / TOUR_TRAVEL;
+      if (p >= 1) {
+        lens.x = toLens.x;
+        lens.y = toLens.y;
+        tourPhase = 'hold';
+        tourT = 0;
+      } else {
+        var e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+        lens.x = fromLens.x + (toLens.x - fromLens.x) * e;
+        lens.y = fromLens.y + (toLens.y - fromLens.y) * e;
+      }
+    }
+  }
+
+  function distHighDim(p1, p2) {
+    // cosine distance
+    var dot = 0, n1 = 0, n2 = 0;
+    for (var i = 0; i < p1.embed.length; i++) {
+      dot += p1.embed[i] * p2.embed[i];
+      n1 += p1.embed[i] * p1.embed[i];
+      n2 += p2.embed[i] * p2.embed[i];
+    }
+    var denom = Math.sqrt(n1) * Math.sqrt(n2);
+    if (denom === 0) return 1;
+    return 1 - (dot / denom); // 0 identical → ~2 opposite
+  }
+
+  function findFocal() {
+    // Nearest point to lens center (in screen space)
+    var best = null, bestD = Infinity;
+    for (var i = 0; i < points.length; i++) {
+      var dx = points[i].fx * W - lens.x;
+      var dy = points[i].fy * H - lens.y;
+      var d2 = dx * dx + dy * dy;
+      if (d2 < bestD) { bestD = d2; best = points[i]; }
+    }
+    return best;
+  }
+
+  function drawBackground() {
+    ctx.fillStyle = BG;
+    ctx.fillRect(0, 0, W, H);
+    // Faint background dot-field: every point rendered small & low contrast
+    for (var i = 0; i < points.length; i++) {
+      var p = points[i];
+      ctx.fillStyle = 'rgba(' + FG + ',' + p.intensity * 0.35 + ')';
+      ctx.beginPath();
+      ctx.arc(p.fx * W, p.fy * H, p.r * 1.1, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function drawLens() {
+    var focal = findFocal();
+    if (!focal) return;
+
+    // Compute k nearest neighbors in high-dim
+    var k = 6;
+    var neigh = points
+      .filter(function (p) { return p !== focal; })
+      .map(function (p) { return { p: p, d: distHighDim(focal, p) }; })
+      .sort(function (a, b) { return a.d - b.d; })
+      .slice(0, k);
+
+    // Clip to lens circle
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(lens.x, lens.y, lens.r, 0, Math.PI * 2);
+    ctx.clip();
+
+    // Dark wash inside lens
+    ctx.fillStyle = 'rgba(8,11,16,0.72)';
+    ctx.fillRect(lens.x - lens.r, lens.y - lens.r, lens.r * 2, lens.r * 2);
+
+    // Faint backdrop: inherited dot-field dimmed further
+    for (var i = 0; i < points.length; i++) {
+      var p = points[i];
+      var dx = p.fx * W - lens.x;
+      var dy = p.fy * H - lens.y;
+      if (dx * dx + dy * dy > lens.r * lens.r) continue;
+      ctx.fillStyle = 'rgba(' + FG + ',' + p.intensity * 0.25 + ')';
+      ctx.beginPath();
+      ctx.arc(p.fx * W, p.fy * H, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Draw neighbor spokes
+    var fx = focal.fx * W, fy = focal.fy * H;
+    var maxD = neigh[k - 1].d || 1;
+    for (var j = 0; j < neigh.length; j++) {
+      var n = neigh[j];
+      // Orient spoke at a stable angle derived from p.embed[0], p.embed[1]
+      var ang = Math.atan2(n.p.embed[1], n.p.embed[0]) + j * 0.02;
+      var spokeLen = lens.r * 0.85 * (n.d / maxD);
+      var nx = fx + Math.cos(ang) * spokeLen;
+      var ny = fy + Math.sin(ang) * spokeLen;
+
+      // Spoke line
+      ctx.strokeStyle = 'rgba(' + SR + ',' + (0.45 + (1 - n.d / maxD) * 0.35) + ')';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(fx, fy);
+      ctx.lineTo(nx, ny);
+      ctx.stroke();
+
+      // Tick marks along the spoke (quarters)
+      var tickCount = 4;
+      for (var tk = 1; tk < tickCount; tk++) {
+        var tx = fx + Math.cos(ang) * (spokeLen * tk / tickCount);
+        var ty = fy + Math.sin(ang) * (spokeLen * tk / tickCount);
+        var perpX = -Math.sin(ang), perpY = Math.cos(ang);
+        ctx.beginPath();
+        ctx.moveTo(tx + perpX * 3, ty + perpY * 3);
+        ctx.lineTo(tx - perpX * 3, ty - perpY * 3);
+        ctx.stroke();
+      }
+
+      // Neighbor point (hairline ring)
+      ctx.strokeStyle = 'rgba(' + FG + ',0.7)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(nx, ny, 3, 0, Math.PI * 2);
+      ctx.stroke();
+      // Tiny index tick at end
+      ctx.fillStyle = 'rgba(' + SR + ',0.85)';
+      ctx.beginPath();
+      ctx.arc(nx, ny, 1.2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Focal point (solid filled)
+    ctx.fillStyle = 'rgba(' + SR + ',0.95)';
+    ctx.beginPath();
+    ctx.arc(fx, fy, 4.5, 0, Math.PI * 2);
+    ctx.fill();
+    // Halo
+    ctx.strokeStyle = 'rgba(' + SR + ',0.45)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.arc(fx, fy, 8, 0, Math.PI * 2);
+    ctx.stroke();
+
     ctx.restore();
+
+    // Lens ring
+    ctx.strokeStyle = 'rgba(' + SR + ',0.9)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(lens.x, lens.y, lens.r, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.strokeStyle = 'rgba(' + SR + ',0.3)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.arc(lens.x, lens.y, lens.r - 5, 0, Math.PI * 2);
+    ctx.stroke();
+    // handle stub
+    var ang2 = Math.PI * 0.25;
+    ctx.beginPath();
+    ctx.moveTo(lens.x + Math.cos(ang2) * lens.r, lens.y + Math.sin(ang2) * lens.r);
+    ctx.lineTo(lens.x + Math.cos(ang2) * (lens.r + 22), lens.y + Math.sin(ang2) * (lens.r + 22));
+    ctx.strokeStyle = 'rgba(' + SR + ',0.6)';
+    ctx.lineWidth = 3;
+    ctx.stroke();
   }
 
   function draw() {
     if (!ctx || !W || !H) return;
-
-    // Auto-drift when pointer is idle
-    lens.idleFor += 1;
-    var lx = lens.x, ly = lens.y;
-    if (lens.idleFor > 90) {
-      var t = frame * 0.005;
-      lx = W * 0.5 + Math.cos(t) * W * 0.28;
-      ly = H * 0.5 + Math.sin(t * 1.4) * H * 0.28;
-    }
-
-    // Background: noise field
-    ctx.fillStyle = BG;
-    ctx.fillRect(0, 0, W, H);
-    if (noiseField) ctx.drawImage(noiseField, 0, 0, W, H);
-
-    // Render micro items at subpixel scale (1.0) so they're basically invisible
-    for (var i = 0; i < MICRO.length; i++) {
-      var m = MICRO[i];
-      drawMicroItem(m, m.fx * W, m.fy * H, 1.0);
-    }
-
-    // Magnified region inside lens
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(lx, ly, lens.r, 0, Math.PI * 2);
-    ctx.clip();
-
-    // Soft dark wash inside lens so magnified content reads
-    ctx.fillStyle = 'rgba(8,11,16,0.55)';
-    ctx.fillRect(lx - lens.r, ly - lens.r, lens.r * 2, lens.r * 2);
-
-    // For each micro item within lens range, render at scale 7
-    var scale = 7;
-    for (var j = 0; j < MICRO.length; j++) {
-      var m2 = MICRO[j];
-      var mx = m2.fx * W;
-      var my = m2.fy * H;
-      var dx = mx - lx;
-      var dy = my - ly;
-      var d  = Math.sqrt(dx * dx + dy * dy);
-      if (d < lens.r * 1.1) {
-        // magnified position: item position translated/scaled around the lens center
-        var cx = lx + dx * scale * 0.3;
-        var cy = ly + dy * scale * 0.3;
-        drawMicroItem(m2, cx, cy, scale * 0.45);
-      }
-    }
-    ctx.restore();
-
-    // Lens ring
-    ctx.save();
-    ctx.strokeStyle = 'rgba(' + SR + ',0.9)';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.arc(lx, ly, lens.r, 0, Math.PI * 2);
-    ctx.stroke();
-    // inner hairline
-    ctx.strokeStyle = 'rgba(' + SR + ',0.35)';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.arc(lx, ly, lens.r - 5, 0, Math.PI * 2);
-    ctx.stroke();
-    // handle (small stroke extending out)
-    var ang = Math.PI * 0.25;
-    ctx.beginPath();
-    ctx.moveTo(lx + Math.cos(ang) * lens.r, ly + Math.sin(ang) * lens.r);
-    ctx.lineTo(lx + Math.cos(ang) * (lens.r + 22), ly + Math.sin(ang) * (lens.r + 22));
-    ctx.strokeStyle = 'rgba(' + SR + ',0.6)';
-    ctx.lineWidth = 3;
-    ctx.stroke();
-    ctx.restore();
-
-    // Hint
-    ctx.save();
-    ctx.font = '10px "IBM Plex Mono", monospace';
-    ctx.fillStyle = 'rgba(' + FG + ',0.3)';
-    var hint = 'move cursor to scrutinize';
-    ctx.fillText(hint, 14, H - 14);
-    ctx.restore();
-
+    stepTour();
+    drawBackground();
+    drawLens();
     frame++;
   }
 
@@ -223,10 +360,8 @@
     var r = canvas.getBoundingClientRect();
     lens.x = e.clientX - r.left;
     lens.y = e.clientY - r.top;
-    lens.idleFor = 0;
-    lens.active = true;
+    lens.cursorOverride = 180; // ~3 seconds at 60fps
   });
-  canvas.addEventListener('pointerleave', function () { lens.active = false; });
 
   canvas.__deckResize = function () {
     var was = running; stop(); if (was) start();
