@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2026-04-21 · SA5 cut, ZM8 → ZM4 reorder, LH10 full-banner fix, LW7 bullet
+
+- **SA5 "Themes (transition)" cut.** Per the prior CLAUDE.md "MAYBE I DONT need this anymore" flag, the bare transition slide between Data analysis (SA4) and the three theme testimonials was removed. SA6–SA12 renumbered to SA5–SA11. Şule's section now runs 11 content slides (SA1–SA11). Deck scrubber `max=48 → 47`, counter `1/48 → 1/47`.
+- **ZM8 → ZM4 reorder** (from earlier in the day, now reflected in `outline-zm.md`). "Infrastructure and Instructional Design" moves to ZM4 to frame the pilot-design lens before the breakdown/hyperparameters/AmigAI sequence. Prior ZM4–ZM7 shift to ZM5–ZM8; ZM9/ZM10 unchanged. Canvas viz for "Teaching Infrastructure through Breakdown" travels with its content: `src/zm4-viz.js` → `src/zm5-viz.js`, `#zm4-canvas` → `#zm5-canvas`.
+- **LH10 NARST banner — full visibility.** Previous commit had tried `object-fit: cover` inline on the `<img>` plus `min-height: 400px` on the figure, but the existing `.stage img { max-width: 50% }` rule meant `cover` just horizontally clipped the banner inside the narrow box. Removed both inline styles; raised `max-width: 50% → 100%` in the `laurie-10` CSS override so the banner fills the right-panel stage at `object-fit: contain` without cropping.
+- **LW7 "The Google Question"** — added "Supportive relationship" as a third bullet after "3 years / 1m" and "Second grant: Empire AI Initiative."
+
 ## 2026-04-21 · Closing slide (QR + contact) + LW5 wording
 
 - **LW5 "The CUNY Context"** — final bullet changed "Vulnerable population" → "Minoritized population" in both `index.html` and `slides.md` per Luke's revised wording.

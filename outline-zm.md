@@ -1,20 +1,18 @@
 # Zach Muhlbauer — Tinkering
 
-11 content slides + section divider + references slide. Source: `index.html` (slides 27–39).
+10 content slides + section divider. Source of truth: `index.html` (slides 22–32). Updated 2026-04-21 after ZM8 → ZM4 reorder.
 
 ---
 
-## 27. Section divider — Tinkering
+## 22. Section divider — Tinkering
 
 **Zach Muhlbauer · 03**
 
-# Tinkering
-
-Eleven slides — one references slide
+# Tinkering as Critical AI Literacy: Teaching AI Infrastructure through Breakdown and Reconfiguration
 
 ---
 
-## 28. ZM1 — Tinkering as Critical AI Literacy
+## 23. ZM1 — Tinkering as Critical AI Literacy
 
 **Zach Muhlbauer · ZM1**
 
@@ -26,12 +24,11 @@ Eleven slides — one references slide
 
 ---
 
-## 29. ZM2 — Designing for Tinkerability
+## 24. ZM2 — Designing for Tinkerability
 
 **Zach Muhlbauer · ZM2**
 
 # Designing for Tinkerability
-## *Resnick & Rosenbaum, 2013*
 
 - **Immediate feedback** — users see the effects of their actions instantly
 - **Fluid experimentation** — rapid modification of prototypes
@@ -40,12 +37,11 @@ Eleven slides — one references slide
 
 ---
 
-## 30. ZM3 — Tinkering Studio & Bricolage
+## 25. ZM3 — Tinkering as Bricolage
 
 **Zach Muhlbauer · ZM3**
 
-# Tinkering Studio & Bricolage
-## *Petrich, Wilkinson, Bevan, 2013 · Louridas, 1999*
+# Tinkering as Bricolage
 
 - Exploratorium Tinkering Studio — learners adjust angles and materials through failure and success
 - Four dimensions: **engagement · intentionality · innovation · solidarity**
@@ -54,127 +50,98 @@ Eleven slides — one references slide
 
 ---
 
-## 31. ZM4 — Historical OCR prototype
+## 26. ZM4 — Infrastructure and Instructional Design
 
 **Zach Muhlbauer · ZM4**
 
-# Historical OCR prototype
-## *Archival work with a vision-language model*
+# Infrastructure and Instructional Design
 
-- Built on Mistral's vision-language model
-- Selective integration; interpretive labor stays with the historian
-- "Where would this break? Which documents couldn't it handle?"
+- Identifying **pedagogical challenges** faculty face in their classes
+- Translating disciplinary methods into **technical control over AI tools**
+- Prototyping **domain-specific AI tools** for classroom application
+- Pilots: **Spanish** (Hunter, Baruch) · **English, History, First-Year Writing** (CCNY)
+
+> Moved from ZM8 → ZM4 on 2026-04-21 so the section opens by naming the pilot-design frame before walking through the infrastructure-breakdown / hyperparameter / AmigAI sequence.
 
 ---
 
-## 32. ZM5 — Teaching Infrastructure through Breakdown
+## 27. ZM5 — Teaching Infrastructure through Breakdown
 
 **Zach Muhlbauer · ZM5**
 
 # Teaching Infrastructure through Breakdown
-## *Model vs. interface layer*
 
-- Foundation model vs. the **harness** around it — prompts, tool calls, UI
-- Consumer platforms obscure the difference
-- Star: infrastructure becomes visible on breakdown
-- **An unstable model is an available one.**
+- Where does the AI model end and the user interface begin?
+- Consumer chat platforms obfuscate the difference (and its contingency)
+- Susan Leigh Star: infrastructure becomes visible on breakdown
+
+> Right-panel visual: live canvas viz (`src/zm5-viz.js` → `#zm5-canvas`) — animated prompt/response bubbles flowing through a network of interface nodes, illustrating the model/harness boundary.
 
 ---
 
-## 33. ZM6 — Configurability and instability
+## 28. ZM6 — Hyperparameters as Instructional Controls
 
 **Zach Muhlbauer · ZM6**
 
-# Configurability and instability
-## *Hyperparameters as exercise controls*
+# Hyperparameters as Instructional Controls
 
 - **Temperature**: predictable ↔ varied
 - **Top-p**: narrow ↔ wide word pool
-- Align with classroom goals, or push toward drift
-- At **temperature 2.0** the model breaks down — output drifts into repeated tokens, dialect bleed-through, fragments of the underlying training data
-
-> *Right-panel placeholder image: model output at temperature 2.0 — a breakdown that surfaces training-data residue (repeated tokens, dialect bleed-through, hallucinated fragments of the pretraining corpus). Bridges ZM5 (two-layer claim) into ZM7 (AmigAI glitch-as-infrastructural-monster).*
+- These settings can align output with classroom goals or push it toward drift
+- At **temperature 2.0**, output drifts into repeated tokens, dialect bleed-through, fragments of the pretraining corpus
 
 ---
 
-## 34. ZM7 — AmigAI: Tinkering toward Breakdown
+## 29. ZM7 — AmigAI: Breakdown and Reconfiguration
 
 **Zach Muhlbauer · ZM7**
 
 # AmigAI
-## *Tinkering toward Breakdown*
 
 - Cross-campus Spanish collaboration — heritage and non-native classes at **Baruch** and **Hunter**
 - Flattening of **low-resource dialects of Spanish** into a standardized register; reproducing essentialized Latin American identities
-- *"This has an agenda"* — a student in one SPAN 204 instance at Hunter
-- **Glitch-as-infrastructural-monster** (Johnson et al.): the model resolves into decisions about training data, evaluation benchmarks, which markets mattered
-- Structural, not incidental — pretraining data, design pipelines, corpus curation and training objectives
+- One student reports, *"This has an agenda"*
+- **Glitch-as-infrastructural-monster** (Johnson et al.): the model resolves into decisions about training data, evaluation benchmarks, which markets mattered — structural, not incidental
 
 ---
 
-## 35. ZM8 — Infrastructure and instructional design
+## 30. ZM8 — AmigAI: Tinkering with System Prompts
 
 **Zach Muhlbauer · ZM8**
 
-# Infrastructure and instructional design
-## *Technical lead on CALI's R&D track*
+# AmigAI
 
-1. Identifying **pedagogical challenges** faculty face in their classes
-2. Translating disciplinary methods into **technical control over AI tools**
-3. Prototyping **domain-specific AI tools** for classroom application
-4. Pilots: **Spanish** (Hunter, Baruch) · **English, History, First-Year Writing** (CCNY)
+- Prompt rewrites tracked through the changelog
+- Settings shift with pedagogical goals
+- Faculty test, compare, revise, repeat
+- Prompting becomes instructional design
 
 ---
 
-## 36. ZM9 — The CUNY AI Lab Sandbox
+## 31. ZM9 — The CUNY AI Lab Sandbox
 
 **Zach Muhlbauer · ZM9**
 
 # The CUNY AI Lab Sandbox
-## *chat.ailab.gc.cuny.edu*
 
-- Self-hosted **Open WebUI** — open-weight models from small local to frontier, single interface
-- Compare models side-by-side, write prompts, adjust parameters, export transcripts
-- Share preset AI configs as an OER — design decisions visible for collective scrutiny
-- Privacy by design · transparency · environmental accountability · criticality
+- Self-hosted instance of **Open WebUI**
+- Open-weight language models from small to large in a single interface
+- Only model providers with zero data retention and training turned off
+- Compare models side-by-side, write system prompts, adjust parameters, export transcripts
+- Model cards with preset system prompt tied to knowledge base, agentic skills, tool calling
+
+> Right-panel visual: `images/oi-anatomy.png` — CUNY AI Lab Sandbox interface anatomy callouts (new chat, model selector, model card info, prompt input), showing AmigAI-Template as a preset model card.
 
 ---
 
-## 37. ZM10 — Cohort 2 in the Sandbox
+## 32. ZM10 — Cohort 2 in the Sandbox
 
 **Zach Muhlbauer · ZM10**
 
 # Cohort 2 in the Sandbox
-## *Five disciplinary projects*
 
 - **Concept Mapping** (Interdisciplinary)
 - **Laboratory Workflows** (Physics)
 - **Deep Listening** (Ethnomusicology)
 - **Interdisciplinary Math Connections** (Precalculus)
 - **Research Writing Scaffold** (Sociology)
-
----
-
-## 38. ZM11 — Lessons Learned by Doing
-
-**Zach Muhlbauer · ZM11**
-
-# Lessons Learned by Doing
-## *Faculty agency through a ratcheting tinkering pathway*
-
-1. **Tinkering** as critical and methodological knowing
-2. Start small; leverage **A/B testing** to name what matters
-3. Process as **scaffolded progression** and **quality assurance**
-4. Accrued gains of **open practices** and **community infrastructure**
-
-> *The pathway ratchets. Knowledge accumulates. Judgment thickens. Questions improve. Agency grows.*
-
----
-
-## 39. References
-
-**Zach Muhlbauer · References**
-
-# References
-
-*(to be filled in)*
