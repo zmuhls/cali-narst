@@ -829,13 +829,13 @@ body.overview section.slide[data-slide="break-sule"]   { border-top: 2px solid v
   column-count: 2;
   column-gap: clamp(24px, 3.2vw, 48px);
   column-rule: 1px solid rgba(180,200,220,0.10);
-  margin-top: 1.1em;
+  margin-top: 0.6em;
 }
 .slide-references .reference-list li {
   font-family: var(--font-display);
-  font-size: var(--fs-body-compact);
-  line-height: 1.34;
-  margin: 0 0 0.42em;
+  font-size: var(--fs-quote-dense);
+  line-height: 1.26;
+  margin: 0 0 0.28em;
   color: rgba(232,238,245,0.88);
   text-wrap: pretty;
   break-inside: avoid;
@@ -848,9 +848,107 @@ body.overview section.slide[data-slide="break-sule"]   { border-top: 2px solid v
   .slide-references .reference-list { column-count: 1; }
 }
 
+/* Closing slide — echoes the title card over the Domain Warping canvas. 2-col
+   grid (contact block + QR). Font-sizes flow through --fs-* tokens. */
+.slide-closing .closing-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(28px, 3.4vw, 64px);
+  align-items: center;
+  width: min(1200px, calc(100vw - 2 * clamp(18px, 4vw, 56px)));
+}
+.slide-closing .closing-card h1 {
+  font-size: var(--fs-display);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.42);
+}
+.slide-closing .closing-card h2 {
+  font-size: var(--fs-subhead);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.24;
+  color: rgba(236,242,248,0.86);
+  margin-bottom: clamp(16px, 2vw, 28px);
+  max-width: 36ch;
+}
+.slide-closing .closing-links {
+  margin-bottom: clamp(12px, 1.4vw, 20px);
+}
+.slide-closing .closing-links p {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-compact);
+  line-height: 1.5;
+  color: rgba(236,242,248,0.90);
+  margin: 0;
+}
+.slide-closing .closing-links a {
+  color: rgba(236,242,248,0.92);
+  text-decoration: underline;
+  text-decoration-color: rgba(217,180,140,0.45);
+  text-underline-offset: 3px;
+}
+.slide-closing .closing-links a:hover { color: var(--accent-warm); }
+.slide-closing .closing-key {
+  display: inline-block;
+  min-width: 5em;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.16em;
+  color: var(--accent-warm);
+  text-transform: uppercase;
+  margin-right: 8px;
+}
+.slide-closing .closing-emails {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  line-height: 1.7;
+  color: rgba(218,225,232,0.82);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+.slide-closing .closing-emails a {
+  color: rgba(236,242,248,0.90);
+  text-decoration: none;
+}
+.slide-closing .closing-emails a:hover { color: var(--accent-warm); }
+.slide-closing .closing-sep {
+  color: rgba(217,180,140,0.55);
+  margin: 0 6px;
+}
+.slide-closing .closing-qr {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.slide-closing .closing-qr img {
+  width: clamp(140px, 14vw, 220px);
+  height: auto;
+  background: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 10px 32px rgba(0,0,0,0.45);
+  display: block;
+}
+.slide-closing .closing-qr figcaption {
+  font-family: var(--font-mono);
+  font-size: var(--fs-cite);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(218,225,232,0.72);
+}
+
 @media (max-width: 720px) {
   .two-col-inner { grid-template-columns: 1fr; gap: 16px; }
   .slide-testimonial .quote-stack blockquote { font-size: 16px; line-height: 1.4; }
+  .slide-closing .closing-card { grid-template-columns: 1fr; }
+  .slide-closing .closing-qr { flex-direction: row; justify-content: flex-start; }
+  .slide-closing .closing-qr img { width: min(160px, 45vw); }
+  .slide-closing .closing-emails { line-height: 2.1; }
 }
 
 /* Presenter paper-title slide (replaces section divider; uses .slide-break scaffold + paper-title variant) */
