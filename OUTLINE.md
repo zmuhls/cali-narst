@@ -9,11 +9,11 @@ Per-presenter reset numbering:
 - **LW** — Luke Waltzer · 8 content slides (LW1–LW8)
 - **LH** — Laurie Hurson · 10 content slides (LH1–LH10)
 - **ZM** — Zach Muhlbauer · 10 content slides (ZM1–ZM10)
-- **SA** — Şule Aksoy · 12 content slides (SA1–SA12)
+- **SA** — Şule Aksoy · 11 content slides (SA1–SA11)
 
 Every presenter also gets a paper-title section divider. References slides were removed 2026-04-20.
 
-**Total: 46 slides**
+**Total: 47 slides (46 core + closing)**
 
 | Deck # | Slide ID | Title |
 |---|---|---|
@@ -82,14 +82,13 @@ Every presenter also gets a paper-title section divider. References slides were 
 | 35 | SA2 | Conceptual Background |
 | 36 | SA3 | CALI as evidence |
 | 37 | SA4 | Data analysis |
-| 38 | SA5 | Themes (transition) |
-| 39 | SA6 | Theme #1 — Critique of Techno-determinism |
-| 40 | SA7 | Theme #2 — Threat to Agency |
-| 41 | SA8 | Theme #3 — Material Implications |
-| 42 | SA9 | Lessons Learned from CALI |
-| 43 | SA10 | Implications for Science Education |
-| 44 | SA11 | Conclusion — Frame #4 |
-| 45 | SA12 | Conclusion — Frame #5 |
+| 38 | SA5 | Theme #1 — Critique of Techno-determinism |
+| 39 | SA6 | Theme #2 — Threat to Agency |
+| 40 | SA7 | Theme #3 — Material Implications |
+| 41 | SA8 | Lessons Learned from CALI |
+| 42 | SA9 | Implications for Science Education |
+| 43 | SA10 | Conclusion — Frame #4 |
+| 44 | SA11 | Conclusion — Frame #5 |
 
 ---
 
@@ -97,7 +96,7 @@ Every presenter also gets a paper-title section divider. References slides were 
 
 - **Leaflet map removed** (2026-04-20): LW5 now uses a static `images/cuny.png`. The previous borough-reveal lifecycle and vendored tiles were retired with the map.
 - **Paper-title section dividers**: all four presenters (Luke, Laurie, Zach, Şule) now use the `paper-title` variant carrying presenter name, role, affiliation, and full paper title.
-- **Testimonial quotes** from the source render as block quotes inside `.slide-testimonial` layouts (LH7, LH10, SA6, SA7, SA8, SA11, SA12).
+- **Testimonial quotes** from the source render as block quotes inside `.slide-testimonial` layouts (LH7, LH10, SA5, SA6, SA7, SA10, SA11).
 - **References slides removed** (2026-04-20): citations live in the paper, not on the deck.
 - **LH2 "Defining AI Literacy" cut** (2026-04-20): earlier cut; content absorbed into Overview + CALI Institute.
 - **LH2 "Critical AI Literacy Institute" cut** (2026-04-20, Laurie request): second Laurie cut; remaining LH3–LH11 renumbered LH2–LH10, putting Laurie at 10 content slides.

@@ -23,11 +23,11 @@ The deck should follow this structure:
 
 - 1 title slide
 - 4 section-divider (paper-title) slides, one for each presenter
-- content slides per presenter (currently: Luke 8, Laurie 11, Zach 10, Sule 12)
-- 1 consolidated references slide (added 2026-04-21, position 47)
-- 1 closing slide with QR + contact info (added 2026-04-21, position 48)
+- content slides per presenter (currently: Luke 8, Laurie 11, Zach 10, Sule 11)
+- 1 consolidated references slide (added 2026-04-21, position 46)
+- 1 closing slide with QR + contact info (added 2026-04-21, position 47)
 
-That yields 48 total slides. Per-presenter references slides were removed
+That yields 47 total slides. Per-presenter references slides were removed
 2026-04-20 and replaced 2026-04-21 with a single alphabetical
 "References &amp; Further Reading" slide (`data-slide="references"`).
 The closing slide (`data-slide="closing"`) echoes the title slide's
@@ -161,13 +161,12 @@ The NARST Slides source was ported into `index.html` today. The following items 
 - **LW7 visual — "a gif"**: source says "Visual: A gif". No animated asset supplied; placeholder in place. Decide which GIF to embed (Google acquisition-era visual? CUNY-investment chart?).
 - **LW3 visual — "Array of images of key books (or maybe slideshow?)"**: source is explicitly uncertain. Placeholder in place. Decide whether to pull book covers for Critical University Studies / Critical Ed Tech / DH titles.
 - **LW4 visual — "Screenshots of key texts"**: similarly unspecified; placeholder in place.
-- **LW2, LW6, LW8, LH9, LH11, SA1, SA2, SA3, SA5, SA9, SA10 visuals — "tbd"**: source marks these as `Visual: tbd` or equivalent. Placeholders in place. (All LH numbers here reference the current post-renumber deck, not the original port.)
+- **LW2, LW6, LW8, LH9, LH11, SA1, SA2, SA3, SA8, SA9 visuals — "tbd"**: source marks these as `Visual: tbd` or equivalent. Placeholders in place. (LH and SA numbers here reference the current post-renumber deck, not the original port.)
 - **LH3 citations** (Summer Institute): Lave & Wenger, 1991; Haraway, 1988; Harding, 1993 render inline in the Goals bullet. References slides no longer exist — confirm in-talk attribution norms with Laurie.
 - **LH8 quote attribution** (Statistical Methods): the long testimonial is rendered with `<cite>Spencer Hill, City College · CALI faculty reflection</cite>`. Source did not formally attribute the quote; inference drawn from LH8 being the Spencer Hill course. Confirm before presenting.
 - **LH11 Haraway inline cite** (Collective World-building): the long Haraway 1988 quote renders with `<cite>Haraway, 1988</cite>` alongside the hooks and Barad citations. Confirm attribution formatting with Laurie.
 - **SA2 citation — "That paper on in defense of humanities, arts, and social sciences …"**: rendered on SA2 as a visible TBD-citation bullet. The actual citation is still unknown.
-- **SA5 (Themes) — "MAYBE I DONT need this anymore"**: source note suggests Şule may want to cut this transition slide. Retained for completeness; flag for Şule's decision.
-- **SA6 / SA7 / SA8 / SA11 block-quote attributions**: all quotes are attributed to "CALI faculty reflection" or the specific persona cited in the source (CALI 2.0 Adjunct faculty, CS; Preservice Elementary Teacher). Verify attributions with Şule.
+- **SA5 / SA6 / SA7 / SA10 / SA11 block-quote attributions**: all quotes are attributed to "CALI faculty reflection" or the specific persona cited in the source (CALI 2.0 Adjunct faculty, CS; Preservice Elementary Teacher). Verify attributions with Şule.
 - **SA7 typo "dishearthing"**: corrected to "disheartening". Flag for Şule.
 - **Source typo "Inevitabiluty" on Şule's paper title and SA2**: silently corrected to "Inevitability" on the break-sule paper-title slide and in all Sule-section aria-labels. Flag for Şule.
 - **Şule paper-title slide has no role / affiliation line**: the NARST Slides source gives Şule only the paper title (no left-panel role or institutional line like Luke and Laurie have). The paper-title slide therefore renders with only the panelist name + paper title. Add role + affiliation text if Şule wants parity with the other two paper-title slides.

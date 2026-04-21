@@ -1336,7 +1336,7 @@ section.slide[data-slide="laurie-5"] .two-col-inner .col ul li {
   margin-bottom: 0.38em;
 }
 
-/* LH10 — Student Agency: crop NARST image to 50% of the right-panel width */
+/* LH10 — Student Agency: show full NARST banner inside the right-panel stage */
 section.slide[data-slide="laurie-10"] .stage {
   display: flex;
   align-items: center;
@@ -1346,7 +1346,7 @@ section.slide[data-slide="laurie-10"] .stage {
 section.slide[data-slide="laurie-10"] .stage img {
   width: auto;
   height: auto;
-  max-width: 50%;
+  max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   margin: 0 auto;
