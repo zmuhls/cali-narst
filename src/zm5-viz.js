@@ -18,8 +18,8 @@
   var P_SEAL_END    = 540;   // 0–540    · sealed surface (9.0s)
   var P_CRACK_END   = 780;   // 540–780  · cracks propagate (4.0s)
   var P_SHATTER_END = 1140;  // 780–1140 · shards fall & settle (6.0s)
-  var P_INFRA_END   = 2460;  // 1140–2460 · infrastructure visible (22.0s)
-  var CYCLE         = 2700;  // 2460–2700 · reseal (4.0s) — total 45s
+  var P_INFRA_END   = 3300;  // 1140–3300 · infrastructure visible (36.0s)
+  var CYCLE         = 3540;  // 3300–3540 · reseal (4.0s) — total 59s
 
   // ── Real inference sequence ──────────────────────────────────────────
   // System prompt + user message + streamed response tokens, matched so
@@ -31,13 +31,14 @@
 
   var USER_MESSAGE = 'What does temperature do?';
 
-  // Rough BPE-style tokenization of the response — subword splits on
-  // "sharpen"/"flatten" and punctuation attached to leading whitespace,
-  // so the stream reads the way a real model emits tokens.
+  // BPE-style tokenization (cl100k_base-flavored): uncommon words split
+  // into subword pieces and punctuation breaks off as its own token, so
+  // the stream reads the way a real model actually emits — not one
+  // word per chip but the ragged wordpiece rhythm of GPT tokenization.
   var STREAM_TOKENS = [
-    'Temperature', ' reshapes', ' the', ' next', '-token',
-    ' distribution', '.', ' Lower', ' values', ' sharpen',
-    ' the', ' peak', ';', ' higher', ' values', ' flatten',
+    'Temperature', ' resh', 'apes', ' the', ' next', '-', 'token',
+    ' distribution', '.', ' Lower', ' values', ' sharp', 'en',
+    ' the', ' peak', ';', ' higher', ' values', ' flat', 'ten',
     ' it', '.'
   ];
 
@@ -185,9 +186,10 @@
     ctx.restore();
   }
 
-  // Frames each token takes to fully emerge. At 60fps this is ~0.8s per
-  // token, matching the cadence of a real streaming chat completion.
-  var FRAMES_PER_TOKEN = 50;
+  // Frames each token takes to fully emerge. At 60fps this is ~1.5s per
+  // token — a deliberate reading pace that lets viewers parse each
+  // subword chip as it materializes rather than blurring into a stream.
+  var FRAMES_PER_TOKEN = 90;
 
   function drawTokenStream(row, w, alpha, f) {
     drawCardShell(row.x, row.y, w, row.h, 'TOKEN STREAM', HR, alpha);
@@ -495,16 +497,18 @@
 
   function makeShards(sx, sy, sw, sh) {
     var list = [];
-    var cols = 4, rows = 4;
+    var cols = 14, rows = 10;
     var cellW = sw / cols, cellH = sh / rows;
-    // Shared vertex grid with small displacement — adjacent shards share
-    // a vertex so they fit together as one pane before falling.
+    // Shared vertex grid — adjacent shards share a vertex so they fit
+    // together as one pane before falling. Jitter is modest so the
+    // finely-tiled grid reads as cracked glass rather than chunky
+    // fragments; each piece stays small and unobtrusive.
     var verts = [];
     for (var r = 0; r <= rows; r++) {
       var row = [];
       for (var c = 0; c <= cols; c++) {
-        var jx = (r === 0 || r === rows) ? 0 : (Math.random() - 0.5) * cellW * 0.22;
-        var jy = (c === 0 || c === cols) ? 0 : (Math.random() - 0.5) * cellH * 0.22;
+        var jx = (r === 0 || r === rows) ? 0 : (Math.random() - 0.5) * cellW * 0.28;
+        var jy = (c === 0 || c === cols) ? 0 : (Math.random() - 0.5) * cellH * 0.28;
         row.push([sx + c * cellW + jx, sy + r * cellH + jy]);
       }
       verts.push(row);
@@ -522,27 +526,27 @@
         for (var v = 0; v < 4; v++) { cx += polyWorld[v][0]; cy += polyWorld[v][1]; }
         cx /= 4; cy /= 4;
         var local = polyWorld.map(function (p) { return [p[0] - cx, p[1] - cy]; });
-        // Shards scatter across the bottom band of the surface, not a
-        // single scan line. baseRest sweeps the bottom ~32% of the
-        // surface so glass doesn't pile on the TOKEN STREAM card, and
-        // each shard picks a rest depth at random within that band.
-        var baseBandTop = sy + sh * 0.68;
+        // Rest band sits near the floor of the surface — shards fall
+        // further and disappear rather than piling on the cards above.
+        var baseBandTop = sy + sh * 0.80;
         var baseBandBot = sy + sh - 4;
         var restY = baseBandTop + Math.random() * (baseBandBot - baseBandTop);
-        // Stagger falling so impact cascades from center outward
+        // Stagger falling so impact cascades from center outward. With
+        // many small pieces the cascade compresses — halving the delay
+        // multiplier keeps the shatter snappy.
         var dx = c2 - (cols - 1) / 2;
         var dy = r2 - (rows - 1) / 2;
         var distFromCenter = Math.sqrt(dx * dx + dy * dy);
-        var delay = distFromCenter * 10 + Math.random() * 26;
+        var delay = distFromCenter * 4 + Math.random() * 16;
         list.push({
           local: local,
           x0: cx, y0: cy,
           x: cx, y: cy,
-          vy: 0,
+          vy: (Math.random() - 0.5) * 1.2,
           // Wider horizontal drift — shards fan out as they fall.
-          vx: (Math.random() - 0.5) * 1.8,
+          vx: (Math.random() - 0.5) * 2.4,
           rot: 0,
-          vrot: (Math.random() - 0.5) * 0.05,
+          vrot: (Math.random() - 0.5) * 0.09,
           restY: restY,
           finalRot: (Math.random() - 0.5) * 0.14,  // near-horizontal rest
           delay: delay,
@@ -550,7 +554,8 @@
           row: r2,
           bounced: false,
           settled: false,
-          flattenT: 0   // ramps 0→1 after settlement; compresses y-scale
+          flattenT: 0,  // ramps 0→1 after settlement; drives compression + fade
+          fadeRate: 0.08 + Math.random() * 0.07  // varied per-shard so they don't vanish in lockstep
         });
       }
     }
@@ -559,10 +564,11 @@
 
   function stepShard(sh, tInShatter) {
     if (sh.settled) {
-      // After settlement, continue flattening toward full compression so
-      // the shard reads as a glass chip on the floor rather than an
-      // upright fragment blocking the infrastructure cards behind it.
-      if (sh.flattenT < 1) sh.flattenT = Math.min(1, sh.flattenT + 0.03);
+      // After settlement, ramp flattenT — this both compresses the
+      // shard's y-scale and fades its alpha to zero, so pieces vanish
+      // on impact rather than piling on the cards above. Per-shard
+      // fadeRate keeps the disappearance from reading as a sync cut.
+      if (sh.flattenT < 1) sh.flattenT = Math.min(1, sh.flattenT + sh.fadeRate);
       return;
     }
     if (tInShatter < sh.delay) { sh.x = sh.x0; sh.y = sh.y0; sh.rot = 0; return; }
@@ -600,44 +606,50 @@
     // fallenAmt 0 = still at original position; 1 = fully fallen/settled.
     // Controls how "broken glass" it reads — faint fill when still in place,
     // stronger glass look once in flight.
+    var fade = 1 - sh.flattenT;
+    if (fade <= 0.01) return;  // shard has vanished on the floor
     ctx.save();
-    ctx.globalAlpha = alpha;
+    ctx.globalAlpha = alpha * fade;
     ctx.translate(sh.x, sh.y);
     ctx.rotate(sh.rot);
-    // Settled shards flatten to thin glass chips so they don't occlude
-    // the infrastructure above. flattenT ramps after each shard's rest.
-    var flat = 1 - sh.flattenT * 0.82;
+    // Settled shards compress AND fade so they dissolve on impact rather
+    // than occluding the infrastructure above.
+    var flat = 1 - sh.flattenT * 0.9;
     ctx.scale(1, flat);
     ctx.beginPath();
     ctx.moveTo(sh.local[0][0], sh.local[0][1]);
     for (var v = 1; v < sh.local.length; v++) ctx.lineTo(sh.local[v][0], sh.local[v][1]);
     ctx.closePath();
 
-    // Glass body: translucent dark, darker underside
+    // Glass body: translucent dark, darker underside. Kept quiet so
+    // many small pieces don't accumulate into visual noise.
     var grd = ctx.createLinearGradient(0, -30, 0, 30);
-    grd.addColorStop(0, 'rgba(26, 36, 50, ' + (0.72 + 0.18 * fallenAmt) + ')');
-    grd.addColorStop(1, 'rgba(10, 14, 22, ' + (0.55 + 0.30 * fallenAmt) + ')');
+    grd.addColorStop(0, 'rgba(26, 36, 50, ' + (0.48 + 0.18 * fallenAmt) + ')');
+    grd.addColorStop(1, 'rgba(10, 14, 22, ' + (0.36 + 0.22 * fallenAmt) + ')');
     ctx.fillStyle = grd;
     ctx.fill();
 
-    // Edge: cool steel
-    ctx.strokeStyle = 'rgba(' + FG + ',' + (0.34 + 0.28 * fallenAmt) + ')';
-    ctx.lineWidth = 1;
-    ctx.stroke();
-
-    // Amber inner-edge highlight on two vertices — signature of fracture
-    ctx.strokeStyle = 'rgba(' + HR + ',' + (0.55 * fallenAmt) + ')';
+    // Edge: cool steel, thin
+    ctx.strokeStyle = 'rgba(' + FG + ',' + (0.22 + 0.22 * fallenAmt) + ')';
     ctx.lineWidth = 0.7;
-    ctx.beginPath();
-    ctx.moveTo(sh.local[0][0], sh.local[0][1]);
-    ctx.lineTo(sh.local[1][0], sh.local[1][1]);
     ctx.stroke();
 
-    // Glint: tiny white highlight on top-left vertex — fades as shard flattens
-    if (fallenAmt > 0.15 && sh.flattenT < 0.7) {
-      ctx.fillStyle = 'rgba(255,255,255,' + (0.35 * fallenAmt * (1 - sh.flattenT)) + ')';
+    // Amber inner-edge highlight on one fracture vertex — kept dim so
+    // only a few pieces telegraph the fracture color at once.
+    if (fallenAmt > 0.2) {
+      ctx.strokeStyle = 'rgba(' + HR + ',' + (0.28 * fallenAmt) + ')';
+      ctx.lineWidth = 0.5;
       ctx.beginPath();
-      ctx.arc(sh.local[0][0] * 0.7, sh.local[0][1] * 0.7, 1.1, 0, Math.PI * 2);
+      ctx.moveTo(sh.local[0][0], sh.local[0][1]);
+      ctx.lineTo(sh.local[1][0], sh.local[1][1]);
+      ctx.stroke();
+    }
+
+    // Glint: tiny white highlight — only during active fall, fades on landing
+    if (fallenAmt > 0.25 && sh.flattenT < 0.4) {
+      ctx.fillStyle = 'rgba(255,255,255,' + (0.22 * fallenAmt * (1 - sh.flattenT * 2.5)) + ')';
+      ctx.beginPath();
+      ctx.arc(sh.local[0][0] * 0.7, sh.local[0][1] * 0.7, 0.9, 0, Math.PI * 2);
       ctx.fill();
     }
 
@@ -728,28 +740,25 @@
       var st = t - P_CRACK_END;
       for (var i = 0; i < shards.length; i++) stepShard(shards[i], st);
     } else if (t < P_INFRA_END) {
-      // INFRASTRUCTURE — shards settled at bottom, cards fully visible
+      // INFRASTRUCTURE — shards have dissolved on impact; cards fully
+      // visible with no floor scatter occluding the TOKEN STREAM.
       var u3 = (t - P_SHATTER_END) / (P_INFRA_END - P_SHATTER_END);
       surfaceAlpha = 0;
       fractureAmt = 0;
       infraAlpha = 1;
-      // Settled shards are thin glass-chip scatter over the bottom band
-      // of the surface. Kept fairly translucent so the TOKEN STREAM and
-      // MODEL · WEIGHTS cards stay legible through them.
-      shardAlpha = 0.34;
+      shardAlpha = 1;  // per-shard flattenT handles the actual disappearance
       fallenAmt = 1;
       phaseLabel = 'INFRASTRUCTURE';
       phaseLabelAlpha = u3 < 0.06 ? u3 / 0.06 : (u3 > 0.94 ? (1 - u3) / 0.06 : 1);
-      // Step every shard so flattenT advances after settlement. Unsettled
-      // stragglers still complete their micro-rest here.
+      // Step stragglers so any late shards still complete their fall + fade.
       for (var si = 0; si < shards.length; si++) stepShard(shards[si], t - P_CRACK_END);
     } else {
-      // RESEAL — surface returns, shards evaporate, infrastructure dims
+      // RESEAL — surface returns, infrastructure dims. Shards already gone.
       var u4 = (t - P_INFRA_END) / (CYCLE - P_INFRA_END);
       surfaceAlpha = easeInOut(u4);
       fractureAmt = (1 - u4) * 0.18;
       infraAlpha = 1 - easeInOut(u4);
-      shardAlpha = 0.34 * (1 - easeInOut(u4));
+      shardAlpha = 0;
       fallenAmt = 1;
       phaseLabel = '';
       phaseLabelAlpha = 0;

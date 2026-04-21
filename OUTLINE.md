@@ -8,12 +8,12 @@ Per-presenter reset numbering:
 
 - **LW** — Luke Waltzer · 8 content slides (LW1–LW8)
 - **LH** — Laurie Hurson · 11 content slides (LH1–LH11)
-- **ZM** — Zach Muhlbauer · 9 content slides (ZM1–ZM9)
+- **ZM** — Zach Muhlbauer · 8 content slides (ZM1–ZM8)
 - **SA** — Şule Aksoy · 11 content slides (SA1–SA11)
 
 Every presenter also gets a paper-title section divider. References slides were removed 2026-04-20.
 
-**Total: 46 slides (title + 4 paper-title dividers + 8 Luke + 11 Laurie + 9 Zach + 11 Şule + references + closing)**
+**Total: 45 slides (title + 4 paper-title dividers + 8 Luke + 11 Laurie + 8 Zach + 11 Şule + references + closing)**
 
 | Deck # | Slide ID | Title |
 |---|---|---|
@@ -68,7 +68,6 @@ Every presenter also gets a paper-title section divider. References slides were 
 | 28 | ZM6 | AmigAI: Breakdown and Reconfiguration |
 | 29 | ZM7 | AmigAI: Tinkering with System Prompts |
 | 30 | ZM8 | The CUNY AI Lab Sandbox |
-| 31 | ZM9 | Cohort 2 in the Sandbox |
 
 ---
 
@@ -101,6 +100,7 @@ Every presenter also gets a paper-title section divider. References slides were 
 - **LH2 "Critical AI Literacy Institute" cut** (2026-04-20, Laurie request): second Laurie cut; remaining LH3–LH11 renumbered LH2–LH10, putting Laurie at 10 content slides.
 - **ZM4 cut** (2026-04-20): "Historical OCR prototype" dropped; remaining Zach slides renumbered. Zach's section ran 10 content slides.
 - **ZM3 cut** (2026-04-21): "Tinkering as Bricolage" dropped; four bricolage bullets (recombination, shifting ends, faculty-as-bricoleurs, assembled parts → local tools) absorbed into ZM1 "Tinkering as Critical AI Literacy" under a 2/3 text · 1/3 viz layout. ZM1 retains its Langton's Ant canvas. Zach's section now runs 9 content slides; remaining ZM labels renumbered (old ZM4 → new ZM3, and so on through ZM10 → ZM9). Internal `data-slide` ids and viz script names were left in place to minimize risk day-of; only the visible ZM label numerals shifted.
+- **ZM9 cut** (2026-04-21): "Cohort 2 in the Sandbox" (`data-slide="zach-talk-10"`) dropped along with its `.zm10-*` and `.specimen` CSS block. Zach's section now runs 8 content slides (ZM1–ZM8); deck total drops to 45. Scrubber `max=47 → 45` and counter `1/47 → 1/45`.
 - **SA split** (2026-04-20): the Conclusion slide was split into SA11 (Frame #4) and SA12 (Frame #5) so each NASEM equity frame gets its own beat.
 - **Carousels do not autoforward**: image and quote carousels (LW4 quote, LH5 image) advance only via presenter input.
 - **NARST + TLC logos linked** (2026-04-20): the NARST header badge links to the 2026 conference page; the TLC footer badge links to `tlc.commons.gc.cuny.edu`. Both sized identically and pinned to `x=18px` so they align vertically down the left edge of the deck.

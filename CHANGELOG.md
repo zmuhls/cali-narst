@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 2026-04-21 · ZM9 cut (Cohort 2 in the Sandbox)
+
+- **Visible ZM9** (`data-slide="zach-talk-10"`, "Cohort 2 in the Sandbox") removed from `index.html` along with its five SVG-glyph specimens (Concept Mapping, Laboratory Workflows, Deep Listening, Math Connections, Research Writing).
+- **CSS** — entire `/* ── ZM10 · Cohort 2 specimens grid ── */` block deleted from `src/styles.css` (`.zm10-subtitle`, `.zm10-cohort-plate`, `.zm10-stage`, `.zm10-specimens`, `.specimen` and all glyph descendant selectors). The trailing SA3 comment on line 1981 still references the LW6/ZM10 ladder lineage as historical pattern; left in place since it's just a note.
+- **Scrubber + counter** dropped `max=47 → 45` and `1/47 → 1/45`. (Note: scrubber max had been stale at 47 since the ZM3 cut, which should have brought it from 47 to 46; this commit brings it in line with the actual slide count of 45.)
+- **Docs**: `CLAUDE.md` (Zach 9 → 8, references position 45 → 44, closing position 46 → 45, total 46 → 45) and `OUTLINE.md` (ZM count, total, removed ZM9 row from Zach table, added ZM9-cut note) updated. `outline-zm.md` not reconciled — it was already stale from the prior ZM3 cut and is being left for a separate pass.
+- Zach's section now runs 8 content slides (ZM1–ZM8). Internal `data-slide` ids unchanged from the post-ZM3-cut state; only the visible label numerals reflect the trimmed count.
+
 ## 2026-04-20 · Four interactive canvas viz for Zach + Sule sections
 
 Four bespoke vanilla-Canvas 2D visualizations added, all mirroring the
