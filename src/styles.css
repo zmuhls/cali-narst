@@ -1586,9 +1586,13 @@ section.slide[data-slide="zach-talk-8"] .content .parallel-points li {
   }
 }
 
-/* LH5 — Research and Information: give left column more room */
-section.slide[data-slide="laurie-5"] .two-col-inner {
-  grid-template-columns: 1.4fr 1fr;
+/* LH5 — Research and Information: give left column more room.
+   Guarded at 720+ so the base mobile rule (.two-col-inner → 1fr at <=720px)
+   wins on phones and the list doesn't cram into two narrow columns. */
+@media (min-width: 720px) {
+  section.slide[data-slide="laurie-5"] .two-col-inner {
+    grid-template-columns: 1.4fr 1fr;
+  }
 }
 section.slide[data-slide="laurie-5"] .two-col-inner .col ol li,
 section.slide[data-slide="laurie-5"] .two-col-inner .col ul li {
